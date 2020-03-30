@@ -1,0 +1,96 @@
+// Responsive design mixins
+@mixin respond-max($breakpoint) {
+	$max-width: $breakpoint - 1px;
+
+	@media screen and (max-width: $max-width) {
+		@content;
+	}
+}
+
+@mixin respond-min($breakpoint) {
+	$min-width: $breakpoint;
+
+	@media screen and (min-width: $min-width) {
+		@content;
+	}
+}
+
+@mixin respond-min-max($breakpoint-min, $breakpoint-max) {
+	$min-width: $breakpoint-min;
+	$max-width: $breakpoint-max - 1px;
+
+	@media screen and (min-width: $min-width) and (max-width: $max-width) {
+		@content;
+	}
+}
+
+// Helpers
+@mixin flex($align: center, $justify: center) {
+	display: flex;
+	align-items: $align;
+	justify-content: $justify;
+}
+
+@mixin flex-align($align: center) {
+	display: flex;
+	align-items: $align;
+}
+
+@mixin flex-justify($justify: center) {
+	display: flex;
+	justify-content: $justify;
+}
+
+@mixin transition-lin($time){
+  transition: all $time ease-in-out;
+}
+
+@mixin transition-cubic($time){
+  transition: all $time cubic-bezier(.4, 0, .2, 1);;
+}
+
+// Button mixins
+@mixin buttonEffects($color, $type: 'primary') {
+	@if $type == 'default' {
+    &:hover {
+      color: $color-gray-600;
+			border-color: $color-gray-500;
+			background-color: $color-white;
+    }
+
+    &:focus {
+      color: $color-gray-700;
+			border-color: $color-gray-600;
+			background-color: $color-white;
+    }
+	
+		&:disabled {
+			opacity: 0.65;
+			cursor: no-drop;
+			background-color: $color;
+	
+			&:focus,
+			&:hover {
+				background-color: $color;
+			}
+		}
+  } @else {
+		&:hover {
+			background-color: darken($color, 4%);
+		}
+		&:focus {
+			background-color: darken($color, 7%);
+		}
+
+		&:disabled {
+			opacity: 0.65;
+			cursor: no-drop;
+			background-color: $color;
+
+			&:focus,
+			&:hover {
+				background-color: $color;
+			}
+		}
+	}
+}

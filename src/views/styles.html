@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/app.css">
+  <title>Recheck GUI</title>
+</head>
+<body>
+  <!-- SVG Icons -->
+  @include('./partials/svg-icons.html')
+
+  <div class="h-screen">
+    @include('./partials/sidebar.html')
+    
+    <div class="content">
+      @include('./partials/header.html')
+
+      <main class="main" role="main">
+        <h2 style="margin-top: 0;">Recheck BV &ndash; Style Guide</h2>
+        <div class="buttons">
+          <h4>Buttons</h4>
+          <div class="elements-group">
+            <button class="btn btn-small btn-default" disabled>
+              Button
+            </button>
+            <button class="btn btn-small btn-primary" disabled>
+              Button
+            </button>
+            <button class="btn btn-small btn-cta" disabled>
+              Button
+            </button>
+          </div>
+          <div class="elements-group">
+            <button class="btn btn-small btn-default">
+              Button
+            </button>
+            <button class="btn btn-small btn-primary">
+              Button
+            </button>
+            <button class="btn btn-small btn-cta">
+              Button
+            </button>
+          </div>
+          <div class="elements-group">
+            <button class="btn btn-default">
+              Button
+            </button>
+            <button class="btn btn-primary">
+              Button
+            </button>
+            <button class="btn btn-cta">
+              Button
+            </button>
+          </div>
+          <div class="elements-group">
+            <button class="btn btn-icon btn-default">
+              <svg class="icon icon-team">
+                <use xlink:href="#icon-team"></use>
+              </svg>
+              Button
+            </button>
+            <button class="btn btn-icon btn-primary">
+              <svg class="icon icon-team">
+                <use xlink:href="#icon-team"></use>
+              </svg>
+              Button
+            </button>
+            <button class="btn btn-icon btn-cta">
+              <svg class="icon icon-team">
+                <use xlink:href="#icon-team"></use>
+              </svg>
+              Button
+            </button>
+          </div>
+          <div class="elements-group">
+            <button class="btn btn-icon no-label btn-default">
+              <svg class="icon icon-team">
+                <use xlink:href="#icon-team"></use>
+              </svg>
+            </button>
+            <button class="btn btn-icon no-label btn-primary">
+              <svg class="icon icon-team">
+                <use xlink:href="#icon-team"></use>
+              </svg>
+            </button>
+            <button class="btn btn-icon no-label btn-cta">
+              <svg class="icon icon-team">
+                <use xlink:href="#icon-team"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="inputs">
+          <h4>Form Elements</h4>
+          <div class="elements-group">
+            <div class="form-group">
+              <label for="input">First Name</label>
+              <input type="text" name="firstName" id="input" class="input" placeholder="Just input..." >
+            </div>
+            <div class="form-group">
+              <label for="input">Email</label>
+              <input type="email" name="firstName" id="input" class="input" placeholder="Just input..." >
+            </div>
+            <div class="form-group">
+              <label for="input">Password</label>
+              <input type="password" name="firstName" id="input" class="input" placeholder="Just input..." >
+            </div>
+            <div class="form-group">
+              <label for="input">First Name (Disabled)</label>
+              <input type="number" name="firstName" id="input" class="input" placeholder="Just input..." disabled>
+            </div>
+          </div>
+
+          <div class="elements-group">
+            <div class="form-group">
+              <label for="selectInput">Dropdown</label>
+              <select name="type" id="selectInput" class="select">
+                <option value="">Value</option>
+                <option value="">Value</option>
+                <option value="">Value</option>
+                <option value="">Value</option>
+                <option value="">Value</option>
+                <option value="">Value</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="badges">
+          <h4>Badges</h4>
+
+          <span class="badge badge-red">Category</span>
+          <span class="badge badge-blue">Category</span>
+          <span class="badge badge-green">Category</span>
+          <span class="badge badge-yellow">Category</span>
+          <span class="badge badge-orange">Category</span>
+          <span class="badge badge-purple">Category</span>
+        </div>
+        
+        <div class="loaders">
+          <h4>Loaders</h4>
+          
+          <div class="elements-group">
+            <div class="loader"></div>
+            <div class="loader loader-md"></div>
+            <div class="loader loader-sm"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/app.css">
+  <title>Recheck GUI</title>
+</head>
+<body>
+  <!-- SVG Icons -->
+  @include('./partials/svg-icons.html')
+
+  <div class="h-screen">
+    @include('./partials/sidebar.html')
+    
+    <div class="content">
+      @include('./partials/header.html')
+
+      <main class="main" role="main">
+        <h2 style="margin-top: 0;">Documents</h2>
+
+        <div class="header-btn-group">
+          <button class="btn btn-small btn-icon btn-default  hover:primary">
+            <svg class="icon icon-edit">
+              <use xlink:href="#icon-edit"></use>
+            </svg>
+            Edit
+          </button>
+          <button class="btn btn-small btn-icon btn-default  hover:primary">
+            <svg class="icon icon-book-open">
+              <use xlink:href="#icon-book-open"></use>
+            </svg>
+            Open
+          </button>
+          <button class="btn btn-small btn-icon btn-default  hover:primary">
+            <svg class="icon icon-edit">
+              <use xlink:href="#icon-edit"></use>
+            </svg>
+            Sign
+          </button>
+          <button class="btn btn-small btn-icon btn-default  hover:primary">
+            <svg class="icon icon-share">
+              <use xlink:href="#icon-share"></use>
+            </svg>
+            Share
+          </button>
+        </div>
+
+        @include('./elements/table.html')
+      </main>
+    </div>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>

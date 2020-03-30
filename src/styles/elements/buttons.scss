@@ -1,0 +1,61 @@
+.btn {
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: $rounded-sm;
+  padding: $space-1 + 2px $space-4;
+  transition: all 170ms ease-in-out;
+
+  &:focus {
+    outline: none;
+  }
+
+  &-cta {
+    color: $color-light;
+    background-color: $color-secondary;
+
+    @include buttonEffects($color-secondary);
+  }
+
+  &-primary {
+    color: $color-light;
+    background-color: $color-primary;
+
+    @include buttonEffects($color-primary);
+  }
+
+  &-default {
+    color: $color-gray-500;
+    background-color: $color-white;
+    border: 1px solid $color-gray-400;
+
+    @include buttonEffects($color-white, disabled);
+  }
+  
+  &-icon {
+    font-size: 14px;
+    @include flex(center, center);
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      margin-right: $space-2;
+    }
+
+    &.no-label {
+      padding: $space-1 + 2px $space-2;
+
+      svg {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &-small {
+    padding: $space-1 $space-3;
+  }
+
+  &-block {
+    width: 100%;
+    display: block;
+  }
+}

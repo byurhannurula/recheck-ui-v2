@@ -1,0 +1,40 @@
+.pagination {
+  position: fixed;
+  bottom: $space-3;
+  right: $space-5;
+  left: 264px + $space-5;
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-gray-600;
+  border-radius: $rounded-md;
+  padding: $space-2 $space-3;
+  background-color: $color-white;
+  @include flex(center, space-between);
+
+  @include respond-max($bp-md) {
+    left: $space-5;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .btn-group {
+    @include flex-justify(space-between);
+    flex: 1;
+
+    @include respond-min($bp-sm) {
+      justify-content: flex-end;
+    }
+
+    .btn {
+      color: $color-gray-500;
+      background-color: $color-white;
+      border: 1px solid $color-gray-400;
+
+      &:not(:last-child) {
+        margin-right: $space-3;
+      }
+    }
+  }
+}

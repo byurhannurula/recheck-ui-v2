@@ -1,0 +1,58 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: $color-gray-600;
+  }
+  
+  input,
+  select {
+    border: 0;
+    width: 232px;
+    padding: 7px 8px;
+    font-size: 13px;
+    border-radius: $rounded-sm;
+    color: $color-dark;
+    border: 1px solid $color-gray-300;
+    background-color: $color-white;
+    transition: all 150ms ease-in;
+
+    &::placeholder {
+      color: $color-gray-600;
+    }
+
+    &:hover {
+      border-color: $color-gray-500;
+    }
+
+    &:focus {
+      outline: 0;
+      border-color: $color-gray-600;
+    }
+
+    &:disabled {
+      cursor: no-drop;
+      color: $color-dark;
+      border-color: $color-gray-300;
+      background-color: $color-gray-100;
+
+      &:focus,
+      &:hover {
+        color: $color-dark;
+        border-color: $color-gray-300;
+        background-color: $color-gray-100;
+      }
+    }
+  }
+
+  .select {
+    -webkit-appearance: none;
+    background: url('../images/chevron-down.svg');
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: right 4px center;
+  }
+}

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+// General reset, config, helpers
+@import './config/reset.scss';
+@import './config/mixins.scss';
+@import './config/variables.scss';
+@import './config/utils.scss';
+
+// Base styles
+@import './config/base.scss';
+
+// Specific element/component styles
+@import './elements/loader.scss';
+@import './elements/buttons.scss';
+@import './elements/badges.scss';
+@import './elements/tables.scss';
+@import './elements/modals.scss';
+@import './elements/form.scss';
+@import './elements/pagination.scss';
+
+// Layout specific styles
+@import './layouts/layout.scss';
+@import './layouts/header.scss';
+@import './layouts/search.scss';
+@import './layouts/sidebar.scss';
+
+// View/Page specific styles
+@import './views/main.scss';

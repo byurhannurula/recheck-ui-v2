@@ -1,0 +1,37 @@
+<header class="header" role="banner">
+  <div class="header-left">
+    <button class="menu-button btn btn-icon no-label">
+      <svg class="icon icon-menu">
+        <use xlink:href="#icon-menu" />
+      </svg>
+    </button>
+    
+    @include('./elements/search-field.html')
+  </div>
+
+  <div class="header-right">
+    <div class="identity-dd-button">
+      <button class="btn btn-icon btn-primary">
+        Identity
+        <svg class="icon icon-chevron-down">
+          <use xlink:href="#icon-chevron-down" />
+        </svg>
+      </button>
+      <div class="dropdown">
+        <button type="button" class="dropdown-link" value="0x85808ba496f740c414190d619695b4876e13d43748fc3318e6f15a2b34561ef9">
+          <svg class="icon icon-clipboard">
+            <use xlink:href="#icon-clipboard" />
+          </svg>
+          0x85808b...a49
+        </button>
+        <div class="seperator"></div>
+        <a href="#" class="dropdown-link">
+          <svg class="icon icon-power">
+            <use xlink:href="#icon-power" />
+          </svg>
+          Logout
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

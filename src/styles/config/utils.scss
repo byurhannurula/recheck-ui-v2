@@ -1,0 +1,28 @@
+.hidden {
+  display: none;
+}
+
+@include respond-min($bp-sm) {
+  .sm\: {
+    &hidden { display: none; }
+    &block { display: block; }
+    &flex { display: flex; }
+  }
+}
+
+@include respond-min($bp-md) {
+  .md\: {
+    &hidden { display: none; }
+    &block { display: block; }
+    &flex { display: flex; }
+  }
+}
+
+@include respond-min($bp-lg) {
+  .lg\: {
+    &hidden { display: none; }
+    &block { display: block; }
+    &flex { display: flex; }
+  }
+}
+

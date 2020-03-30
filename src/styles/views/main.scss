@@ -1,0 +1,16 @@
+.header-btn-group {
+  display: flex;
+  margin-bottom: 14px;
+
+  button:not(:last-child) {
+    margin-right: 14px;
+  }
+}
+.elements-group {
+  display: flex;
+  margin-bottom: 14px;
+
+  button:not(:last-child) {
+    margin-right: 14px;
+  }
+}
