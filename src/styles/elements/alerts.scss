@@ -1,0 +1,38 @@
+.alert {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  z-index: 1;
+  background-color: #fff;
+  padding: 14px;
+  box-shadow: 0 3px 6px rgba(20, 20, 20, 0.09);
+  border-radius: 4px;
+  color: $color-dark;
+  font-size: 14px;
+
+  transition: 200ms;
+  transform: translateY(16px);
+  transform-origin: bottom left;
+  // hide element
+  opacity: 0;
+  visibility: hidden;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &-info {
+
+  }
+
+  &-error {
+    
+  }
+
+  &-success {
+
+  }
+}
+

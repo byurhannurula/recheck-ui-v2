@@ -15,9 +15,10 @@ module.exports = {
       img: `./build/images`
     },
     watch: {
-      views: `./src/views/**/*.+(html|pug)`,
-      styles: `./src/styles/**/*.+(sass|scss)`,
-      scripts: `./src/scripts/**/*.js`
+      views: `./src/views/**/*.html`,
+      styles: `./src/styles/**/*.scss`,
+      scripts: `./src/scripts/**/*.js`,
+      images: `./src/images/**/*.*`
     }
   },
   tasks: {

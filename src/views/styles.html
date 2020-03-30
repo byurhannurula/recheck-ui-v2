@@ -130,15 +130,16 @@
         <div class="badges">
           <h4>Badges</h4>
 
-          <span class="badge badge-red">Category</span>
-          <span class="badge badge-blue">Category</span>
-          <span class="badge badge-green">Category</span>
-          <span class="badge badge-yellow">Category</span>
-          <span class="badge badge-orange">Category</span>
-          <span class="badge badge-purple">Category</span>
+          <div class="elements-group">
+            <span class="badge badge-red">Category</span>
+            <span class="badge badge-blue">Category</span>
+            <span class="badge badge-green">Category</span>
+            <span class="badge badge-yellow">Category</span>
+            <span class="badge badge-orange">Category</span>
+            <span class="badge badge-purple">Category</span>
+          </div>
         </div>
-        
-        <div class="loaders">
+        <div class="loaders" style="display: none;">
           <h4>Loaders</h4>
           
           <div class="elements-group">
@@ -146,6 +147,27 @@
             <div class="loader loader-md"></div>
             <div class="loader loader-sm"></div>
           </div>
+        </div>
+
+        <div class="modal-dialogs">
+          <h4>Modals</h4>
+
+          <div class="elements-group">            
+            <button type="button" class="btn btn-primary modal-open-btn">Show Basic Modal</button>
+            <button type="button" class="btn btn-primary modal-open-btn">Show QR Code Modal</button>
+          </div>
+
+          @include('./elements/modal.html')
+        </div>
+
+        <div class="alerts">
+          <h4>Alerts</h4>
+
+          <div class="elements-group">            
+            <button type="button" class="btn btn-primary alert-trigger-btn">Trigger Basic Alert</button>
+          </div>
+
+          @include('./elements/alert.html')
         </div>
       </main>
     </div>

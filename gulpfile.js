@@ -13,7 +13,7 @@ const errorMessage = err => console.log(err.message)
 
 gulp.task('views', done => {
   gulp
-    .src(`${routes.src.views}/*.+(html|pug)`)
+    .src(`${routes.src.views}/*.html`)
     .pipe($.plumber({ errorHandler: errorMessage }))
     .pipe(
       include({
@@ -53,7 +53,7 @@ gulp.task('scripts', done => {
     .src(`${routes.src.scripts}/**/*.js`)
     .pipe($.plumber({ errorHandler: errorMessage }))
     .pipe(dev($.sourcemaps.init()))
-    .pipe(prod($.uglify()))
+    // .pipe($.uglify())
     .pipe($.concat('app.js'))
     .pipe(dev($.sourcemaps.write('.')))
     .pipe(gulp.dest(routes.dist.scripts))
@@ -104,6 +104,7 @@ gulp.task('watch', () => {
   gulp.watch(`${routes.watch.views}`, gulp.series('views'))
   gulp.watch(`${routes.watch.styles}`, gulp.series('styles'))
   gulp.watch(`${routes.watch.scripts}`, gulp.series('scripts'))
+  gulp.watch(`${routes.watch.images}`, gulp.series('images'))
 })
 
 exports.dev = gulp.series('clean', tasks.dev)
