@@ -2,11 +2,12 @@
   -webkit-appearance: button;
   display: inline-flex;
   justify-content: center;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.25rem;
   border-radius: $rounded-sm;
-  padding: $space-1 $space-3;
+  padding: 10px $space-3;
   transition: all 170ms ease-in-out;
 
   &:focus {

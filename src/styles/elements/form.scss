@@ -11,9 +11,9 @@
   input,
   select {
     border: 0;
-    width: 232px;
-    padding: 7px 8px;
-    font-size: 13px;
+    width: 256px;
+    font-size: 14px;
+    padding: 9px 10px;
     border-radius: $rounded-sm;
     color: $color-dark;
     border: 1px solid $color-gray-300;
@@ -46,13 +46,21 @@
         background-color: $color-gray-100;
       }
     }
+
+  }
+
+  .block {
+    display: block;
+    width: 100%;
   }
 
   .select {
+    cursor: pointer;
+    appearance: none;
     -webkit-appearance: none;
     background-image: url('../images/chevron-down.svg');
+    background-position: right 6px center;
     background-repeat: no-repeat;
     background-size: 18px;
-    background-position: right 4px center;
   }
 }

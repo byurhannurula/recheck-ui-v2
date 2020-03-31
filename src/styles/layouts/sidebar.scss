@@ -100,13 +100,12 @@
   }
 
   &--list {
-    margin-top: $space-2;
+    margin-top: $space-3;
   }
 
   &--item {
     color: $color-light;
     padding: 11px $space-4;
-    @include transition-lin(250ms);
 
     &:focus,
     &:hover {
@@ -121,15 +120,12 @@
     }
 
     &.is-active {
-      outline: none;
       background-color: $color-primary-dark;
 
       .sub-list {
-        display: flex;
         opacity: 1;
-        height: auto;
+        display: flex;
         pointer-events: auto;
-        @include transition-lin(300ms);
       }
 
       svg.icon-arrow-right {
@@ -143,7 +139,6 @@
 
     span {
       font-size: 15px;
-      font-weight: 500;
       @include flex-align();
     }
 
@@ -151,18 +146,16 @@
       width: 1rem;
       height: 1rem;
       color: $color-gray-300;
-      @include transition-lin(300ms);
     }
   }
 
   .sub-list {
-    display: flex;
+    display: none;
     opacity: 0;
-    height: 0;
     pointer-events: none;
     flex-direction: column;
     padding-left: $space-4;
-    @include transition-lin(300ms);
+    transition: all 200ms ease-in;
 
     &--item {
       @include flex-align();
@@ -178,9 +171,7 @@
       display: flex;
       align-items: center;
       font-size: 15.5px;
-      font-weight: 500;
       color: $color-gray-400;
-      @include transition-lin(200ms);
 
       &:before {
         display: flex;
@@ -190,7 +181,6 @@
         height: 8px;
         border-radius: 4px;
         border: 1px solid $color-light;
-        @include transition-lin(200ms);
       }
 
       &:hover {

@@ -39,21 +39,21 @@ function eventListeners() {
       : ''
   })
 
-  navItems.forEach(item => {
-    item.addEventListener('click', e => {
-      e.preventDefault()
+  // navItems.forEach(item => {
+  //   item.addEventListener('click', e => {
+  //     e.preventDefault()
 
-      const activeElement = sidebarNav.querySelector('.is-active')
+  //     const activeElement = sidebarNav.querySelector('.is-active')
 
-      activeElement.classList.contains('is-active')
-        ? activeElement.classList.remove('is-active')
-        : ''
+  //     activeElement.classList.contains('is-active')
+  //       ? activeElement.classList.remove('is-active')
+  //       : ''
 
-      item.classList.contains('is-active')
-        ? item.classList.remove('is-active')
-        : item.classList.add('is-active')
-    })
-  })
+  //     item.classList.contains('is-active')
+  //       ? item.classList.remove('is-active')
+  //       : item.classList.add('is-active')
+  //   })
+  // })
 
   identityCopyButton.addEventListener('click', e => {
     copyToClipboard(e.target.value)
