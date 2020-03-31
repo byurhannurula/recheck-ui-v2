@@ -18,7 +18,7 @@
     color: $color-dark;
     border: 1px solid $color-gray-300;
     background-color: $color-white;
-    transition: all 150ms ease-in;
+    transition: all 150ms ease-in-out;
 
     &::placeholder {
       color: $color-gray-600;
@@ -30,7 +30,7 @@
 
     &:focus {
       outline: 0;
-      border-color: $color-gray-600;
+      border-color: $color-primary;
     }
 
     &:disabled {
@@ -50,7 +50,7 @@
 
   .select {
     -webkit-appearance: none;
-    background: url('../images/chevron-down.svg');
+    background-image: url('../images/chevron-down.svg');
     background-repeat: no-repeat;
     background-size: 18px;
     background-position: right 4px center;

@@ -52,26 +52,20 @@
 // Button mixins
 @mixin buttonEffects($color, $type: 'primary') {
 	@if $type == 'default' {
-    &:hover {
+		&:hover,
+		&:focus {
       color: $color-gray-600;
-			border-color: $color-gray-500;
-			background-color: $color-white;
-    }
-
-    &:focus {
-      color: $color-gray-700;
-			border-color: $color-gray-600;
-			background-color: $color-white;
+			border-color: $color-gray-400;
     }
 	
 		&:disabled {
 			opacity: 0.65;
 			cursor: no-drop;
-			background-color: $color;
-	
+
 			&:focus,
 			&:hover {
-				background-color: $color;
+				color: $color-gray-700;
+    		border: 1px solid $color-gray-300;
 			}
 		}
   } @else {

@@ -1,4 +1,5 @@
-<div class="modal" data-animation="on">
+<!-- Basic modal -->
+<div class="modal modal-basic" data-animation="on">
   <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
     <div class="modal-header">
       <h4>Share Request</h4>
@@ -12,8 +13,61 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quia, dolorem qui magnam eaque numquam nobis blanditiis, autem culpa commodi incidunt nulla, maiores voluptate provident nam illo ipsa nihil repellat.</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default">Button</button>
-      <button type="button" class="btn btn-primary">Button</button>
+      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Info modal w/ one button -->
+<div class="modal modal-info" data-animation="on">
+  <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
+    <div class="modal-body">
+      <svg class="icon icon-success">
+        <use xlink:href="#icon-success"></use>
+      </svg>
+      <h3>Document share successful</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus numquam nihil.</p>
+    </div>
+    <div class="modal-footer">
+      <a class="btn btn-primary btn-block">Go back to Documents</a>
+    </div>
+  </div>
+</div>
+
+<!-- Input modal -->
+<div class="modal modal-input" data-animation="on">
+  <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
+    <div class="modal-header">
+      <h4>Share Request</h4>
+      <button type="button" class="modal-close-btn" aria-label="close">
+        <svg class="icon icon-close">
+          <use xlink:href="#icon-close"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3>Document share successful</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus numquam nihil.</p>
+      <input type="text" placeholder="Input modal">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- QR Code modal -->
+<div class="modal modal-qrcode" data-animation="on">
+  <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
+    <div class="modal-body">
+      QR CODE HERE
+      <h3>Document share successful</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus numquam nihil.</p>
+    </div>
+    <div class="modal-footer">
+      <a class="btn btn-primary btn-block">Go back to Documents</a>
     </div>
   </div>
 </div>

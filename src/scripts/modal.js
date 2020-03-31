@@ -1,29 +1,43 @@
-const modal = $('.modal')
-const modalOpenButton = $('.modal-open-btn')
-const modalCloseButton = $('.modal-close-btn')
+const modals = $$('.modal')
 
-document.addEventListener('keydown', modalClose)
+const modalOpenButtons = $$('.modal-btn')
+const modalCloseButtons = $$('.modal .modal-header > button')
 
-// to show our modal
-modalOpenButton.addEventListener('click', (e) => {
-  modal.classList.add('is-active')
+// to show our modals
+modalOpenButtons.forEach(btn => {
+  btn.addEventListener('click', e => {
+    if (e.target.dataset.type) {
+      showModal($(`.modal.modal-${e.target.dataset.type}`))
+    } else {
+      showModal($(`.modal`))
+    }
+  })
 })
 
-// to close our modal
-modalCloseButton.addEventListener('click', (e) => {
-  modal.classList.remove('is-active')
+// to close our modals
+modalCloseButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const active = activeModal()
+    closeModal(active)
+  })
 })
 
-console.log(modal)
-
-function modalClose(e) {
-  if (!e.keyCode || e.keyCode === 27) {
-    // code to close modal goes here
-  }
+function activeModal() {
+  let active = null
+  modals.forEach(modal => {
+    if (modal.classList.contains('is-active')) {
+      active = modal
+    }
+  })
+  return active
 }
 
-// mOverlay.addEventListener('click', (e) => {
-//   if (e.target == modal.parentNode) {
-//     modalClose(e)
-//   }
-// }, false)
+function showModal(element) {
+  element.classList.toggle('is-active')
+}
+
+function closeModal(element) {
+  element.classList.contains('is-active')
+    ? element.classList.remove('is-active')
+    : ''
+}

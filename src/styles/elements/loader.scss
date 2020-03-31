@@ -1,6 +1,6 @@
 :root {
   --loader-size: 5em;
-  --border-size: 0.5em;
+  --border-width: 0.5em;
 }
 
 .loader {
@@ -11,28 +11,28 @@
     border-radius: 50%;
   }
 
-  margin: 32px auto;
+  // margin: 32px auto;
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
   transform: translateZ(0);
-  border-top: var(--border-size) solid rgba(0,89,145, 0.2);
-  border-right: var(--border-size) solid rgba(0,89,145, 0.2);
-  border-bottom: var(--border-size) solid rgba(0,89,145, 0.2);
-  border-left: var(--border-size) solid #005991;
+  border-top: var(--border-width) solid rgba(0,89,145, 0.2);
+  border-right: var(--border-width) solid rgba(0,89,145, 0.2);
+  border-bottom: var(--border-width) solid rgba(0,89,145, 0.2);
+  border-left: var(--border-width) solid #005991;
   animation: spin 1s infinite linear;
 
   &-sm {
     & {
       --loader-size: 2em;
-      --border-size: 0.22em;
+      --border-width: 0.22em;
     }
   }
 
   &-md {
     & {
       --loader-size: 3.5em;
-      --border-size: 0.35em;
+      --border-width: 0.35em;
     }
   }
 }

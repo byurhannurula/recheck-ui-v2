@@ -1,6 +1,3 @@
-const $ = o => document.querySelector(o)
-const $$ = o => document.querySelectorAll(o)
-
 const menuButton = $('.menu-button')
 const closeButton = $('.close-button')
 

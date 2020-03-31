@@ -1,3 +1,6 @@
+const $ = o => document.querySelector(o)
+const $$ = o => document.querySelectorAll(o)
+
 // window.addEventListener('DOMContentLoaded', () => {
 //   drawTable()
 // })

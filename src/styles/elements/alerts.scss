@@ -1,17 +1,15 @@
 .alert {
   position: fixed;
-  bottom: 32px;
-  left: 32px;
+  top: 72px;
+  right: 24px;
   z-index: 1;
-  background-color: #fff;
   padding: 14px;
-  box-shadow: 0 3px 6px rgba(20, 20, 20, 0.09);
+  @include flex(center, space-between);
+  box-shadow: 0 3px 6px rgba(20, 20, 20, 0.2);
   border-radius: 4px;
-  color: $color-dark;
   font-size: 14px;
-
   transition: 200ms;
-  transform: translateY(16px);
+  transform: translateX(16px);
   transform-origin: bottom left;
   // hide element
   opacity: 0;
@@ -20,19 +18,55 @@
   &.is-active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(0);
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 24px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+    }
+  }
+
+  button {
+    border: 0;
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  &-error,
+  &-warning,
+  &-success {
+    button {
+      color: $color-light;
+    }
   }
 
   &-info {
-
+    color: $color-dark;
+    background-color: #fff;
   }
 
   &-error {
-    
+    color: $color-light;
+    background-color: $color-error;
+  }
+
+  &-warning {
+    color: $color-light;
+    background-color: $color-warning;
   }
 
   &-success {
-
+    color: $color-light;
+    background-color: $color-success;
   }
 }
 

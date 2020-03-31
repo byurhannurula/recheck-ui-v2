@@ -29,10 +29,12 @@ $color-primary-darker: #003557;
 
 $color-secondary: #89CA02;
 
-$color-error: #CC0011;
-$color-error-light: #FBE9EB;
-$color-success: #11CC00;
-$color-success-light: #D6F6D3;
+$color-error: hsl(355, 69%, 40%);
+$color-error-light: hsl(353, 69%, 95%);
+$color-warning: hsl(48, 69%, 40%);
+$color-warning-light: hsl(48, 69%, 95%);
+$color-success: hsl(115, 69%, 40%);
+$color-success-light: hsl(115, 69%, 90%);
 
 
 // Spaces

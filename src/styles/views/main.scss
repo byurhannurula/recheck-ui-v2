@@ -8,9 +8,10 @@
 }
 .elements-group {
   display: flex;
-  margin-bottom: 14px;
+  flex-wrap: wrap;
 
-  button:not(:last-child) {
-    margin-right: 14px;
+  > * {
+    margin-right: 12px;
+    margin-bottom: 12px;
   }
 }
