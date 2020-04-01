@@ -74,7 +74,7 @@
   }
 
   &-body {
-    padding: $space-3 $space-5 $space-5;
+    padding: $space-5 $space-5;
 
     p {
       color: $color-gray-600;
@@ -148,6 +148,42 @@
 
     .form-group {
       margin-top: 12px;
+    }
+  }
+
+  // qrcode modal
+  &.modal-qrcode {
+    text-align: center;
+
+    .modal-content {
+      max-width: 380px;
+    }
+
+    .modal-body {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .qrcode {
+        padding: 18px;
+        width: max-content;
+        border-radius: $rounded-sm;
+        background-color: $color-white;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+
+        img {
+          width: 124px;
+          height: 124px;
+        }
+      }
+
+      h3 {
+        margin-top: 24px;
+        margin-bottom: 12px;
+      }
+      p {
+        font-size: 15px;
+      }
     }
   }
 }

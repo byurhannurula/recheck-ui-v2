@@ -1,17 +1,29 @@
-.header-btn-group {
-  display: flex;
-  margin-bottom: 14px;
-
-  button:not(:last-child) {
-    margin-right: 14px;
+.index {
+  .header-btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  
+    .buttons {
+      display: flex;
+  
+      button:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
   }
 }
-.elements-group {
-  display: flex;
-  flex-wrap: wrap;
 
-  > * {
-    margin-right: 12px;
-    margin-bottom: 12px;
+.styles {
+  overflow-y: auto;
+  
+  .elements-group {
+    display: flex;
+    flex-wrap: wrap;
+  
+    > * {
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
   }
 }

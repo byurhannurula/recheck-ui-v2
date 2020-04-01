@@ -1,17 +1,24 @@
 <div class="table-wrapper">
   <table id="table">
-    <thead>
-      <tr>
-        <th><input type="checkbox" /></th>
-        <th>Document Name</th>
-        <th>Document ID</th>
-        <th>Date</th>
-        <th>Category</th>
-        <th>Keywords</th>
-        <th>Certificate</th>
-      </tr>
-    </thead>
+    <thead></thead>
     <tbody></tbody>
   </table>
 </div>
-@include('./elements/pagination.html')
+
+<div class="pagination">
+  <div class="hidden sm:block">
+    <p class="text-sm leading-5 text-gray-700">
+      Showing
+      <span>1</span>
+      to
+      <span>10</span>
+      of
+      <span>20</span>
+      results
+    </p>
+  </div>
+  <div class="btn-group">
+    <a href="#" class="btn btn-default btn-small ">Previous</a>
+    <a href="#" class="btn btn-default btn-small ">Next</a>
+  </div>
+</div>

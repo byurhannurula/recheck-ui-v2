@@ -30,7 +30,7 @@
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus numquam nihil.</p>
     </div>
     <div class="modal-footer">
-      <a class="btn btn-primary btn-block">Go back to Documents</a>
+      <a href="/" class="btn btn-primary btn-block">Go back to Documents</a>
     </div>
   </div>
 </div>
@@ -48,8 +48,8 @@
     </div>
     <div class="modal-body">
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus numquam nihil.</p>
-      <div class="form-group block">
-        <input type="text" class="input" placeholder="Input modal">
+      <div class="form-group">
+        <input type="text" class="input block" placeholder="Input modal">
       </div>
     </div>
     <div class="modal-footer">
@@ -63,12 +63,16 @@
 <div class="modal modal-qrcode" data-animation="on">
   <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
     <div class="modal-body">
-      QR CODE HERE
-      <h3>Document share successful</h3>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus numquam nihil.</p>
+      <div class="qrcode">
+        <img src="./images/qrcode.png" alt="QR Code" />
+      </div>
+      <h3>Document share request</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus.</p>
     </div>
     <div class="modal-footer">
-      <a class="btn btn-primary btn-block">Go back to Documents</a>
+      <button type="button" aria-label="close-modal" class="btn btn-primary btn-block">
+        Close
+      </button>
     </div>
   </div>
 </div>
