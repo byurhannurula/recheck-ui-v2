@@ -78,7 +78,7 @@ async function getData() {
   }
 
   const queryParams = formatParams(currentQuery)
-  const authParams = `api=1&token=cde24050-7503-11ea-a768-5f2acbeed30b`
+  const authParams = `api=1&token=2f65a310-758d-11ea-a768-5f2acbeed30b`
   const queryUrl = `https://beta.recheck.io/data/created?${authParams}&${queryParams}`
 
   try {
@@ -187,6 +187,19 @@ function drawTable() {
 }
 
 const dataTemplate = object => {
+  const btnClass =
+    object.txStatus === 'complete'
+      ? 'primary'
+      : object.txStatus === 'error'
+      ? 'danger'
+      : 'default'
+
+  const btnContent =
+    object.txStatus === 'complete'
+      ? 'Completed'
+      : object.txStatus === 'error'
+      ? 'Error'
+      : 'In Progress'
   return `
     <tr>
       <td><input type="checkbox" /></td>
@@ -206,8 +219,13 @@ const dataTemplate = object => {
       </td>
       <td>${object.keywords}</td>
       <td>
-        <button type="button" class="btn btn-default btn-small">
-          ${object.txStatus}
+        <button type="button" class="btn btn-${btnClass} btn-icon btn-small">
+        ${
+          object.txStatus === 'complete'
+            ? `<svg class="icon icon-report"> <use xlink:href="#icon-report" /> </svg>`
+            : `<div class="icon loader loader-sm"></div>`
+        }
+          ${btnContent}
         </button>
       </td>
     </tr>
@@ -226,9 +244,10 @@ function fillBody(content) {
     tableBody.innerHTML += rowElement
   }
 
-
   selectElements('#table tbody tr > td:nth-child(3)').forEach(td => {
-    td.addEventListener('click', (e) => copyToClipboard(e.target.attributes[0].value))
+    td.addEventListener('click', e =>
+      copyToClipboard(e.target.attributes[0].value)
+    )
   })
 }
 
@@ -261,10 +280,6 @@ function getFileNameAndExtension(fileName) {
   }
 }
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   drawTable('#table')
-
 })
-

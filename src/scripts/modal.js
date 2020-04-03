@@ -7,9 +7,9 @@ const modalCloseButtons = selectElements('.modal .modal-header > button')
 modalOpenButtons.forEach(btn => {
   btn.addEventListener('click', e => {
     if (e.target.dataset.type) {
-      showModal($(`.modal.modal-${e.target.dataset.type}`))
+      showModal(selectElement(`.modal.modal-${e.target.dataset.type}`))
     } else {
-      showModal($(`.modal`))
+      showModal(selectElement(`.modal`))
     }
   })
 })

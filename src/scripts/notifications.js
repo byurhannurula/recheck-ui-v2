@@ -6,7 +6,7 @@ const alerts = selectElements('.alert')
 // to show our alerts
 alertOpenButtons.forEach(btn => {
   btn.addEventListener('click', e => {
-    showAlert($(`.alert.alert-${e.target.dataset.type}`))
+    showAlert(selectElement(`.alert.alert-${e.target.dataset.type}`))
   })
 })
 
