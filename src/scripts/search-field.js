@@ -1,15 +1,6 @@
-// const field = document.querySelector('#search-field')
-// const filterSection = document.querySelector('.search-filter')
+const searchBar = selectElement('.search-area')
+const searchInput = selectElement('#search-input')
 
-// field.addEventListener('focus', () => activateFilter())
-// field.addEventListener('keydown', e => {
-//   e.preventDefault()
-//   deactivateFilter()
-// })
-// field.addEventListener('submit', e => {
-//   e.preventDefault()
-//   deactivateFilter()
-// })
-
-// const activateFilter = () => filterSection.classList.add('is-active')
-// const deactivateFilter = () => filterSection.classList.remove('is-active')
+searchInput ? searchInput.addEventListener('click', (e) => {
+  searchBar ? searchBar.classList.add('mobile-search') : ''
+}) : ''

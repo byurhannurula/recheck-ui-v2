@@ -79,7 +79,7 @@ table,
 
     td, th {
       &:first-child {
-        width: 50px;
+        width: 40px;
         border-left: 4px solid transparent;
       }
 
@@ -90,6 +90,49 @@ table,
     }
   }
 }
+
+table,
+#table {
+  
+  tbody {
+    tr.table-loading {
+
+      td {
+        span {
+          display: block;
+        }
+      }
+      td.loading-1 {
+        width: 20px;
+
+        span {
+          width: 20px;
+          height: 20px;
+          background-color: rgba(0,0,0,.15);
+        }
+      }
+      td.loading-2 {
+        width: 60px;
+        span {
+          height: 12px;
+          background-size: 400px 100px;
+          background: linear-gradient(to right, #eee 20%, #ddd 50%, #eee 80%);
+          animation: moving-gradient 1s linear infinite forwards;
+        }
+      }
+      td.loading-3 {
+        width: 100px;
+
+        span {
+          background-color: rgba(0,0,0,.15);
+          width: 100%;
+          height: 34px
+        }
+      }
+    }
+  }
+}
+
 
 .pagination {
   position: fixed;
@@ -134,5 +177,14 @@ table,
         margin-right: $space-3;
       }
     }
+  }
+}
+
+@keyframes moving-gradient {
+  0% {
+    background-position: -120px 0; 
+  }
+  100% {
+    background-position: 120px 0;
   }
 }

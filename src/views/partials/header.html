@@ -6,7 +6,31 @@
       </svg>
     </button>
     
-    @include('./elements/search.html')
+    <div class="search-area">
+      <div class="search-overlay"></div>
+      <form action="" class="search-form">
+        <div class="form-group">
+          <select name="category" id="search-category" class="select">
+            <option value="All Categories">All Categories</option>
+            <option value="Category">Category</option>
+            <option value="Category">Category</option>
+            <option value="Category">Category</option>
+            <option value="Category">Category</option>
+            <option value="Category">Category</option>
+            <option value="Category">Category</option>
+            <option value="Category">Category</option>
+          </select>
+        </div>
+        <input type="search" id="search-input" placeholder="Search" autocomplete="off" />
+    
+        <button type="submit" class="btn btn-icon">
+          <svg class="icon icon-search">
+            <use xlink:href="#icon-search" />
+          </svg>  
+          Search
+        </button>
+      </form>
+    </div>    
   </div>
 
   <div class="header-right">

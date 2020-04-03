@@ -249,40 +249,13 @@ function fillBody(content) {
   })
 }
 
-function shortenFileName(fileName, maxLength = 24) {
-  if (fileName.length > maxLength) {
-    let fileNameAndExtension = getFileNameAndExtension(fileName)
-
-    let name = fileNameAndExtension.dataName
-    let ext = fileNameAndExtension.dataExtension
-
-    // //29 - 2 for *. - extension length
-    fileName = `${name.substring(0, maxLength - 2 - ext.length)}*.${ext}`
-  }
-
-  return fileName
-}
-
-function getFileNameAndExtension(fileName) {
-  let extension = '.unknown'
-  let extensionDotIndex = fileName.lastIndexOf('.')
-
-  if (extensionDotIndex > 0) {
-    extension = fileName.substring(extensionDotIndex)
-    fileName = fileName.substring(0, extensionDotIndex)
-  }
-
-  return {
-    dataName: fileName,
-    dataExtension: extension
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   drawTable('#table')
 
   selectElement('.search-form').addEventListener('keyup', async (e) => {
     const searchVal = e.target.value
-    fillBody(await setParams('search', searchVal))
+    if (searchVal.length >= 3 || searchVal.length === 0) {
+      fillBody(await setParams('search', searchVal))
+    }
   })
 })
