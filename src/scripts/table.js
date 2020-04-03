@@ -78,9 +78,9 @@ async function getData() {
   }
 
   const queryParams = formatParams(currentQuery)
-  const authParams = `api=1&token=2f65a310-758d-11ea-a768-5f2acbeed30b`
+  const authParams = `api=1&token=986088f0-75c2-11ea-a768-5f2acbeed30b`
   const queryUrl = `https://beta.recheck.io/data/created?${authParams}&${queryParams}`
-
+  console.log('getData runs..')
   try {
     const res = await fetch(queryUrl)
     const data = await res.json()
@@ -104,13 +104,6 @@ async function configurePagination(numberOfEntries) {
 
   // Fill table with number of entries
   fillBody(await setParams('length', 10))
-
-  // Search data
-  selectElement('#search-field').addEventListener('submit', e => {
-    e.preventDefault()
-    const val = selectElement('#search-field').value
-    setParams('search', val)
-  })
 
   // find num rows and pages count
   let numRows = recordsTotal
@@ -217,7 +210,12 @@ const dataTemplate = object => {
       <td>
         <span class="badge badge-red">${object.category}</span>
       </td>
-      <td>${object.keywords}</td>
+      <td>
+        ${object.keywords.length > 15 
+          ? object.keywords.substring(0,12).concat('..')
+          : object.keywords
+        }
+      </td>
       <td>
         <button type="button" class="btn btn-${btnClass} btn-icon btn-small">
         ${
@@ -237,10 +235,10 @@ function fillBody(content) {
   const data = content.data
   console.log('Data for the current page', data)
   const tableBody = selectElement(`#table > tbody`)
+  tableBody.innerHTML = ''
 
   for (let row = 0; row < data.length; row++) {
     const rowElement = dataTemplate(data[row])
-
     tableBody.innerHTML += rowElement
   }
 
@@ -282,4 +280,9 @@ function getFileNameAndExtension(fileName) {
 
 document.addEventListener('DOMContentLoaded', () => {
   drawTable('#table')
+
+  selectElement('.search-form').addEventListener('keyup', async (e) => {
+    const searchVal = e.target.value
+    fillBody(await setParams('search', searchVal))
+  })
 })

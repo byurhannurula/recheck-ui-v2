@@ -18,7 +18,7 @@
       padding-right: $space-5;
       border-right: 1px solid $color-gray-300;
 
-      @include respond-min($bp-md) {
+      @include respond-min($bp-lg) {
         display: none;
       }
     }

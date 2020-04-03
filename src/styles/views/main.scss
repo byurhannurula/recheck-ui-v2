@@ -1,6 +1,6 @@
 .index {
   .header-btn-group {
-    @include flex(center, space-between);
+    @include flex-justify(space-between);
     margin-bottom: 14px;
     
     @include respond-max(560px) {
@@ -14,14 +14,6 @@
         }
       }
     }
-
-    @include respond-max(340px) {
-      .button-group {
-        button {
-          width: 100%;
-        }
-      }
-    }
   
     .button-group {
       display: flex;
@@ -29,9 +21,15 @@
       justify-content: center;
 
       button {
+        min-width: 100px;
         padding-top: 9px;
         padding-bottom: 9px;
-        min-width: 100px;
+
+        @include respond-max(450px) {
+          min-width: auto;
+          padding-left: $space-1;
+          padding-right: $space-1;
+        }
       }
     }
 
