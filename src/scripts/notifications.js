@@ -1,7 +1,7 @@
-const alertOpenButtons = $$('.alert-btn')
-const alertCloseButtons = $$('.alert > button')
+const alertOpenButtons = selectElements('.alert-btn')
+const alertCloseButtons = selectElements('.alert > button')
 
-const alerts = $$('.alert')
+const alerts = selectElements('.alert')
 
 // to show our alerts
 alertOpenButtons.forEach(btn => {

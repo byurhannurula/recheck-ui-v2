@@ -80,3 +80,28 @@
     display: block;
   }
 }
+
+.button-group {
+  height: fit-content;
+  border-radius: $rounded-sm;
+  border: 1px solid $color-gray-300;
+
+  button.group {
+    border: 0;
+    border-radius: 0;
+
+    &:not(:last-child) {
+      border-right: 1px solid $color-gray-300;
+    }
+
+    &:first-child {
+      border-top-left-radius: $rounded-sm;
+      border-bottom-left-radius: $rounded-sm;
+    }
+
+    &:last-child {
+      border-top-right-radius: $rounded-sm;
+      border-bottom-right-radius: $rounded-sm;
+    }
+  }
+}

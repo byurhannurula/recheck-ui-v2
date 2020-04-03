@@ -1,7 +1,7 @@
-const modals = $$('.modal')
+const modals = selectElements('.modal')
 
-const modalOpenButtons = $$('.modal-btn')
-const modalCloseButtons = $$('.modal .modal-header > button')
+const modalOpenButtons = selectElements('.modal-btn')
+const modalCloseButtons = selectElements('.modal .modal-header > button')
 
 // to show our modals
 modalOpenButtons.forEach(btn => {

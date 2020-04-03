@@ -1,112 +1,145 @@
-// drawTable - main function
-function drawTable(tableElement, headData, bodyData) {
-  // First of all fill the table
-  Object.entries(headData).length !== 0 ? fillHead(tableElement, headData) : ''
-  bodyData.length !== 0 ? fillBody(tableElement, bodyData) : ''
+let recordsTotal = null
+let recordsFiltered = null
 
-  // Default row count is 10
-  configurePagination(10)
+const defaultQuery = {
+  draw: '1',
+  start: 0,
+  length: 10,
+  search: { value: '' },
+  order: [{ column: '4', dir: 'asc' }]
+}
+let currentQuery = defaultQuery
 
-  // on change row count update table
-  $('#rowCounts').addEventListener('change', function() {
-    configurePagination(this.value)
-  })
+function formatParams(params) {
+  let result = new URLSearchParams()
+
+  result.append('draw', params.draw)
+  result.append('start', params.start)
+  result.append('length', params.length)
+  result.append('search[value]', params.search.value)
+  result.append('order[0][column]', params.order[0].column)
+  result.append('order[0][dir]', params.order[0].dir)
+
+  return result.toString()
 }
 
-// 1. Fill table head
-function fillHead(tableSelector = 'table', data) {
-  if (!tableSelector) return
-  if (!data) return
+async function setParams(propNames, propValues) {
+  let isArray = Array.isArray(propNames) || Array.isArray(propValues)
 
-  const dataArray = Object.values(data)
-
-  const tableHead = $(`${tableSelector} > thead`) // get thead from table
-  const row = document.createElement('tr') // creating head row
-
-  // create cells in row
-  for (let column = 0; column < dataArray.length; column++) {
-    const cell = document.createElement('th')
-    cell.innerHTML = dataArray[column]
-    row.appendChild(cell)
+  if (!isArray) {
+    propNames = [propNames]
+    propValues = [propValues]
   }
 
-  tableHead.appendChild(row) // add the row to the table thead
-}
+  if (propNames.length !== propValues.length) {
+    return alert('error')
+  }
 
-// 2. Fill table body
-function fillBody(tableSelector = 'table', data) {
-  if (!tableSelector) return
-  if (!data) return
-
-  const tableBody = $(`${tableSelector} > tbody`) // get thead from table
-
-  for (let row = 0; row < data.length; row++) {
-    const rowElement = document.createElement('tr') // creating the row
-    const columnArray = Object.values(data[row]) // Convert objects to array
-
-    // create cells in row
-    for (let column = 0; column < columnArray.length; column++) {
-      const cellElement = document.createElement('td')
-
-      cellElement.innerHTML = columnArray[column]
-      rowElement.appendChild(cellElement)
+  for (let i = 0; i < propNames.length; i++) {
+    switch (propNames[i]) {
+      case 'start':
+        currentQuery.start = propValues[i]
+        break
+      case 'length':
+        currentQuery.length = propValues[i]
+        break
+      case 'search':
+        currentQuery.search.value = propValues[i]
+        break
+      case 'orderColumn':
+        currentQuery.order[0].column = propValues[i]
+        break
+      case 'orderDir':
+        currentQuery.order[0].dir = propValues[i]
+        break
     }
+  }
 
-    tableBody.appendChild(rowElement) // add the row to the table thead
+  localStorage.setItem(
+    'recheckSettings',
+    JSON.stringify(currentQuery, (key, value) => {
+      return value
+    })
+  )
+
+  return await getData()
+}
+
+async function getData() {
+  if (localStorage.getItem('recheckSettings')) {
+    currentQuery = JSON.parse(localStorage.getItem('recheckSettings'))
+  } else {
+    localStorage.setItem(
+      'recheckSettings',
+      JSON.stringify(currentQuery, (key, value) => {
+        return value
+      })
+    )
+  }
+
+  const queryParams = formatParams(currentQuery)
+  const authParams = `api=1&token=cde24050-7503-11ea-a768-5f2acbeed30b`
+  const queryUrl = `https://beta.recheck.io/data/created?${authParams}&${queryParams}`
+
+  try {
+    const res = await fetch(queryUrl)
+    const data = await res.json()
+    recordsTotal = data.recordsTotal
+    recordsFiltered = data.recordsFiltered
+
+    return data
+  } catch (error) {
+    console.log(error)
   }
 }
 
-function configurePagination(numberOfEntries) {
-  const prevButton = $('.pagination #prev-btn')
-  const nextButton = $('.pagination #next-btn')
-  const paginationRowInfo = $$('.pagination p span')
+async function configurePagination(numberOfEntries) {
+  const prevButton = selectElement('.pagination #prev-btn')
+  const nextButton = selectElement('.pagination #next-btn')
+  const paginationRowInfo = selectElements('.pagination p span')
 
   let perPage = numberOfEntries
-  let currentPage = 0
-  let pageIncrement = 0
-
-  // Remove all the rows
-  $('#table tbody').innerHTML = ''
+  let currentPage = 1
+  let pageIncrement = 1
 
   // Fill table with number of entries
-  fillBody('#table', bodyData.slice(0, perPage))
+  fillBody(await setParams('length', 10))
+
+  // Search data
+  selectElement('#search-field').addEventListener('submit', e => {
+    e.preventDefault()
+    const val = selectElement('#search-field').value
+    setParams('search', val)
+  })
 
   // find num rows and pages count
-  let numRows = $$('#table tbody tr').length
+  let numRows = recordsTotal
   let numPages = Math.ceil(numRows / perPage)
 
   console.log('number of rows', numRows)
   console.log('number of pages', numPages)
+  console.log('current page number', currentPage, pageIncrement)
 
-  // Update static info from pagination
-  updatePaginationInfo()
+  // // Update static info from pagination
+  updatePaginationInfo(currentPage)
 
   // TODO: Disable buttons if there is no pages, etc...
-  // if (numPages <= 1) {
-  //   prevButton.disabled = true
-  //   nextButton.disabled = true
-  // }
-  // if (currentPage === 0) {
-  //   prevButton.disabled = true
-  // }
+  // .....
 
   // TODO: Can we know on initial load how much files user have and
-
   nextButton.addEventListener('click', () => {
     pageIncrement++
-    currentPage++
     if (pageIncrement > numPages - 1) {
       pageIncrement = numPages - 1
       nextButton.disabled = true
     } else {
       nextButton.disabled = false
     }
-    console.log(pageIncrement)
+    console.log('pageIncrement', pageIncrement)
     showTableRows(pageIncrement)
   })
   prevButton.addEventListener('click', () => {
     pageIncrement--
-    currentPage--
     if (pageIncrement < 0) {
       pageIncrement = 0
       prevButton.disabled = true
@@ -117,60 +150,121 @@ function configurePagination(numberOfEntries) {
     showTableRows(pageIncrement)
   })
 
-  function showTableRows(currentPage) {
+  async function showTableRows(pageNumber) {
     // Remove all the rows from DOM
-    $('#table tbody').innerHTML = ''
+    selectElement('#table tbody').innerHTML = ''
 
-    // Replace number from pagination
-    updatePaginationInfo()
+    updatePaginationInfo(pageNumber)
 
     // Fill table again
     fillBody(
-      '#table',
-      bodyData.slice(currentPage * perPage, (currentPage + 1) * perPage)
+      await setParams(
+        ['start', 'length'],
+        [pageNumber * perPage, (pageNumber + 1) * perPage]
+      )
     )
   }
 
-  function updatePaginationInfo() {
+  function updatePaginationInfo(pageNumber) {
+    console.log('Elements on the page', pageNumber * perPage)
     // Replace number from pagination
-    paginationRowInfo.item(0).textContent = currentPage * perPage
-    paginationRowInfo.item(1).textContent = (currentPage + 1) * perPage
+    paginationRowInfo.item(0).textContent = 1 + (pageNumber - 1) * perPage
+    paginationRowInfo.item(1).textContent = pageNumber * perPage
     paginationRowInfo.item(2).textContent = numRows
   }
 }
 
-window.addEventListener(
-  'DOMContentLoad',
-  drawTable('#table', headData, bodyData)
-)
+// drawTable - main function
+function drawTable() {
+  // Default row count is 10
+  // Get data and configure pagination
+  configurePagination(10)
 
-// Filter function with jquery
-// var table = $('table')
-// $('#phone_header, #facility_header, #spec_header, #city_header').each(
-//   function() {
-//     var th = $(this),
-//       thIndex = th.index(),
-//       inverse = false
+  // on change row count update table
+  selectElement('#rowCounts').addEventListener('change', function() {
+    configurePagination(this.value)
+  })
+}
 
-//     th.click(function() {
-//       table
-//         .find('td')
-//         .filter(function() {
-//           return $(this).index() === thIndex
-//         })
-//         .sortElements(
-//           function(a, b) {
-//             return $.text([a]) > $.text([b])
-//               ? inverse ? -1 : 1
-//               : inverse ? 1 : -1
-//           },
-//           function() {
-//             // parentNode is the element we want to move
-//             return this.parentNode
-//           }
-//         )
+const dataTemplate = object => {
+  return `
+    <tr>
+      <td><input type="checkbox" /></td>
+      <td>${shortenFileName(`${object.dataName}${object.dataExtension}`)}</td>
+      <td value=${object.dataId}>
+        ${object.dataId.replace(
+          object.dataId.substring(10, object.dataId.length - 10),
+          '...'
+        )}
+        <svg class="icon icon-clipboard">
+          <use xlink:href="#icon-clipboard" />
+        </svg>
+      </td>
+      <td>${new Date(object.dateCreated).toLocaleString()}</td>
+      <td>
+        <span class="badge badge-red">${object.category}</span>
+      </td>
+      <td>${object.keywords}</td>
+      <td>
+        <button type="button" class="btn btn-default btn-small">
+          ${object.txStatus}
+        </button>
+      </td>
+    </tr>
+  `
+}
 
-//       inverse = !inverse
-//     })
-//   }
-// )
+// Fill table body
+function fillBody(content) {
+  const data = content.data
+  console.log('Data for the current page', data)
+  const tableBody = selectElement(`#table > tbody`)
+
+  for (let row = 0; row < data.length; row++) {
+    const rowElement = dataTemplate(data[row])
+
+    tableBody.innerHTML += rowElement
+  }
+
+
+  selectElements('#table tbody tr > td:nth-child(3)').forEach(td => {
+    td.addEventListener('click', (e) => copyToClipboard(e.target.attributes[0].value))
+  })
+}
+
+function shortenFileName(fileName, maxLength = 24) {
+  if (fileName.length > maxLength) {
+    let fileNameAndExtension = getFileNameAndExtension(fileName)
+
+    let name = fileNameAndExtension.dataName
+    let ext = fileNameAndExtension.dataExtension
+
+    // //29 - 2 for *. - extension length
+    fileName = `${name.substring(0, maxLength - 2 - ext.length)}*.${ext}`
+  }
+
+  return fileName
+}
+
+function getFileNameAndExtension(fileName) {
+  let extension = '.unknown'
+  let extensionDotIndex = fileName.lastIndexOf('.')
+
+  if (extensionDotIndex > 0) {
+    extension = fileName.substring(extensionDotIndex)
+    fileName = fileName.substring(0, extensionDotIndex)
+  }
+
+  return {
+    dataName: fileName,
+    dataExtension: extension
+  }
+}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  drawTable('#table')
+
+})
+

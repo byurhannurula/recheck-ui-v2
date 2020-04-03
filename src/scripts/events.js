@@ -1,13 +1,15 @@
-const menuButton = $('.menu-button')
-const closeButton = $('.close-button')
+const menuButton = selectElement('.menu-button')
+const closeButton = selectElement('.close-button')
 
-const sidebar = $('.sidebar')
-const sidebarNav = $('.sidebar .nav')
-const navItems = $$('.nav .nav--item')
+const sidebar = selectElement('.sidebar')
+const sidebarNav = selectElement('.sidebar .nav')
+const navItems = selectElements('.nav .nav--item')
 
-const identityDd = $('.identity-dd-button')
-const identityDdButton = $('.identity-dd-button > button.btn')
-const identityCopyButton = $('.identity-dd-button > .dropdown .dropdown-link')
+const identityDd = selectElement('.identity-dd-button')
+const identityDdButton = selectElement('.identity-dd-button > button.btn')
+const identityCopyButton = selectElement(
+  '.identity-dd-button > .dropdown .dropdown-link'
+)
 
 window.addEventListener('DOMContentLoaded', eventListeners())
 

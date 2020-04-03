@@ -3,12 +3,43 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 14px;
+    
+    @include respond-max(560px) {
+      flex-direction: column;
+
+      .button-group {
+        margin-bottom: 12px;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    @include respond-max(340px) {
+      .button-group {
+        button {
+          width: 100%;
+        }
+      }
+    }
   
-    .buttons {
+    .button-group {
       display: flex;
-  
-      button:not(:last-child) {
-        margin-right: 8px;
+      align-items: center;
+      justify-content: center;
+
+      button {
+        min-width: 100px;
+      }
+    }
+
+    .form-group .select {
+      max-width: 72px;
+
+      @include respond-max(560px) {
+        width: 100%;
+        max-width: 100%;
       }
     }
   }
