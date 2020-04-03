@@ -1,12 +1,6 @@
-<div class="search-field">
-  <form action="" class="search-form">
-    <svg class="icon icon-search">
-      <use xlink:href="#icon-search" />
-    </svg>
-    <input type="search" id="search-field" placeholder="Search" autocomplete="off" />
 
-    <div class="search-filter">
-      <h3 class="search-filter--title">Filter your search</h3>
+  <div class="search-area mobile-search"><div class="search-overlay"></div>
+    <form action="" class="search-form">
       <div class="form-group">
         <select name="" id="" class="select">
           <option value="All Categories">All Categories</option>
@@ -19,7 +13,13 @@
           <option value="Category">Category</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-small btn-primary">Search</button>
-    </div>
-  </form>
-</div>
+      <input type="search" id="search-input" placeholder="Search" autocomplete="off" />
+
+      <button type="submit" class="btn btn-icon">
+        <svg class="icon icon-search">
+          <use xlink:href="#icon-search" />
+        </svg>  
+        Search
+      </button>
+    </form>
+  </div>
