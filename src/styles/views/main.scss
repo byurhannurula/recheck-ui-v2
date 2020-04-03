@@ -1,7 +1,6 @@
 .index {
   .header-btn-group {
-    display: flex;
-    justify-content: space-between;
+    @include flex-justify(space-between);
     margin-bottom: 14px;
     
     @include respond-max(560px) {
@@ -15,14 +14,6 @@
         }
       }
     }
-
-    @include respond-max(340px) {
-      .button-group {
-        button {
-          width: 100%;
-        }
-      }
-    }
   
     .button-group {
       display: flex;
@@ -31,11 +22,21 @@
 
       button {
         min-width: 100px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+
+        @include respond-max(450px) {
+          min-width: auto;
+          padding-left: $space-1;
+          padding-right: $space-1;
+        }
       }
     }
 
     .form-group .select {
-      max-width: 72px;
+      padding-top: 9.5px;
+      padding-bottom: 9.5px;
+      max-width: 80px;
 
       @include respond-max(560px) {
         width: 100%;

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  @include('./partials/head.html')
+</head>
+<body>
+  <!-- SVG Icons -->
+  @include('./partials/svg-icons.html')
+
+  <div class="h-screen">
+    @include('./partials/sidebar-view.html')
+    
+    <div class="content">
+      @include('./partials/header.html')
+
+      <main class="main index" role="main">
+        <h2 style="margin-top: 0;">Viewer</h2>
+      </main>
+    </div>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>

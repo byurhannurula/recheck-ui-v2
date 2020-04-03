@@ -1,10 +1,3 @@
-const menuButton = selectElement('.menu-button')
-const closeButton = selectElement('.close-button')
-
-const sidebar = selectElement('.sidebar')
-const sidebarNav = selectElement('.sidebar .nav')
-const navItems = selectElements('.nav .nav--item')
-
 const identityDd = selectElement('.identity-dd-button')
 const identityDdButton = selectElement('.identity-dd-button > button.btn')
 const identityCopyButton = selectElement(
@@ -16,47 +9,9 @@ window.addEventListener('DOMContentLoaded', eventListeners())
 // Listen for all clicks on the document
 document.addEventListener('click', e => {
   handleOuterClick(e, '.sidebar', sidebar)
-
-  // If the click happened inside the the container
-  // const el = e.target.closest('.identity-dd-button .dropdown')
-  // console.log(el)
-  // if (!el) return
-
-  // // Otherwise, run our code...
-  // identityDd.classList.contains('is-active')
-  //   ? identityDd.classList.remove('is-active')
-  //   : ''
 })
 
 function eventListeners() {
-  menuButton.addEventListener('click', () => {
-    !sidebar.classList.contains('is-active')
-      ? sidebar.classList.add('is-active')
-      : ''
-  })
-
-  closeButton.addEventListener('click', () => {
-    sidebar.classList.contains('is-active')
-      ? sidebar.classList.remove('is-active')
-      : ''
-  })
-
-  // navItems.forEach(item => {
-  //   item.addEventListener('click', e => {
-  //     e.preventDefault()
-
-  //     const activeElement = sidebarNav.querySelector('.is-active')
-
-  //     activeElement.classList.contains('is-active')
-  //       ? activeElement.classList.remove('is-active')
-  //       : ''
-
-  //     item.classList.contains('is-active')
-  //       ? item.classList.remove('is-active')
-  //       : item.classList.add('is-active')
-  //   })
-  // })
-
   identityCopyButton.addEventListener('click', e => {
     copyToClipboard(e.target.value)
   })
