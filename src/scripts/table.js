@@ -35,6 +35,8 @@ async function setParams(propNames, propValues) {
     return alert('error')
   }
 
+  console.log(propNames,propValues,currentQuery)
+
   for (let i = 0; i < propNames.length; i++) {
     switch (propNames[i]) {
       case 'start':
@@ -172,6 +174,39 @@ function drawTable() {
   // Default row count is 10
   // Get data and configure pagination
   configurePagination(10)
+
+  selectElements(`#table > thead th`).forEach(th => {
+    th.addEventListener('click', async e => {
+      const el = e.target
+      const currentData = el.dataset
+
+      if (currentData.sortdir && currentData.sortdir === 'asc') {
+        el.setAttribute('data-sortDir', 'desc')
+        fillBody(
+          await setParams(
+            ['column', 'dir'],
+            [el.cellIndex.toString(), currentData.sortdir]
+          )
+        )
+      } else if (currentData.sortdir && currentData.sortdir === 'desc') {
+        el.setAttribute('data-sortDir', 'asc')
+        fillBody(
+          await setParams(
+            ['column', 'dir'],
+            [el.cellIndex.toString(), currentData.sortdir]
+          )
+        )
+      } else if (!currentData.sortdir) {
+        el.setAttribute('data-sortDir', 'asc')
+        fillBody(
+          await setParams(
+            ['column', 'dir'],
+            [el.cellIndex.toString(), currentData.sortdir]
+          )
+        )
+      }
+    })
+  })
 
   // on change row count update table
   selectElement('#rowCounts').addEventListener('change', function() {

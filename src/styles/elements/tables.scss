@@ -47,6 +47,12 @@ table,
       font-size: 13px;
       font-weight: 500;
       text-transform: uppercase;
+      
+      .icon {
+        width: 18px;
+        height: 18px;
+        margin-left: $space-2;
+      }
 
       &:first-child {
         padding-left: 24px;
