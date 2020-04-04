@@ -19,17 +19,17 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 24px 24px;
+    padding: 0 $space-3 $space-5;
     @include flex-align(flex-end);
   }
   
   &-content {
-    overflow: auto;
-    margin-top: -212px;
-    border-radius: 4px;
     width: 100%;
     max-width: 560px;
-    background-color: #ffffff;
+    overflow: auto;
+    margin-top: -212px;
+    border-radius: $rounded-sm;
+    background-color: $color-white;
     box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04);
 
     @include respond-max($bp-sm) {
@@ -145,7 +145,6 @@
 
   // input modal
   &.modal-input {
-
     .form-group {
       margin-top: 12px;
     }
@@ -187,7 +186,6 @@
     }
   }
 }
-
 
 
 .modal[data-animation="on"] {

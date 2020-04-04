@@ -13,11 +13,9 @@ function copyToClipboard(valueToCopy) {
   document.body.removeChild(aux)
 }
 
-const getClosest = function (elem, selector, className = 'is-active') {
+const getClosest = function(elem, selector, className = 'is-active') {
   if (!event.target.closest(selector)) {
-    elem.classList.contains(className)
-      ? elem.classList.remove(className)
-      : ''
+    elem.classList.contains(className) ? elem.classList.remove(className) : ''
   }
 }
 

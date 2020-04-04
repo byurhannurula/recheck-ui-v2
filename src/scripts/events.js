@@ -17,4 +17,3 @@ function eventListeners() {
       : identityDd.classList.add('is-active')
   })
 }
-

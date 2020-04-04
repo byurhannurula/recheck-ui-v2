@@ -5,6 +5,7 @@
   z-index: 1;
   padding: 14px;
   @include flex(center, space-between);
+  flex-wrap: wrap;
   box-shadow: 0 3px 6px rgba(20, 20, 20, 0.2);
   border-radius: 4px;
   font-size: 14px;
@@ -14,10 +15,12 @@
   // hide element
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 
   &.is-active {
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
     transform: translateX(0);
   }
 
@@ -25,7 +28,12 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-right: 24px;
+    margin-right: 14px;
+
+    p {
+      margin: 0;
+      align-self: flex-end;
+    }
 
     svg {
       width: 18px;
@@ -67,6 +75,20 @@
   &-success {
     color: $color-light;
     background-color: $color-success;
+  }
+
+  @include respond-max(400px) {
+    .content {
+      svg {
+        margin-right: 14px;
+      }
+      
+      p {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
   }
 }
 

@@ -211,9 +211,10 @@ const dataTemplate = object => {
         <span class="badge badge-red">${object.category}</span>
       </td>
       <td>
-        ${object.keywords.length > 15 
-          ? object.keywords.substring(0,12).concat('..')
-          : object.keywords
+        ${
+          object.keywords.length > 15
+            ? object.keywords.substring(0, 12).concat('..')
+            : object.keywords
         }
       </td>
       <td>
@@ -252,7 +253,7 @@ function fillBody(content) {
 document.addEventListener('DOMContentLoaded', () => {
   drawTable('#table')
 
-  selectElement('.search-form').addEventListener('keyup', async (e) => {
+  selectElement('.search-form').addEventListener('keyup', async e => {
     const searchVal = e.target.value
     if (searchVal.length >= 3 || searchVal.length === 0) {
       fillBody(await setParams('search', searchVal))
