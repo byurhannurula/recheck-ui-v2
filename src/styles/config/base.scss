@@ -6,3 +6,8 @@ body {
   color: $color-dark;
   background-color: $color-light;
 }
+
+::selection {
+  color: $color-light;
+  background-color: $color-primary;
+}

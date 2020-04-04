@@ -9,21 +9,43 @@
 
   <div class="h-screen">
     <div class="content">
-      <!-- @include('./partials/header.html') -->
-
+      <header class="login-header">
+        <a href="/">
+          <img src="./images/recheck-logo.png" alt="logo" />
+        </a>
+      </header>
       <main class="main login" role="main">
-        <div class="left-side">
-          <h1>ReCheck</h1>
-          <h3>Put some text/info here...</h3>
-        </div>
-        <div class="right-side">
+        <section class="left-side">
+          <h1>Welcome to ReCheck Data</h1>
+          <h4>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex
+            recusandae quod et reiciendis aliquam, dicta officiis sequi
+            iure. Harum vero dolore praesentium quidem laboriosam quod!
+          </h4>
+        </section>
+        <section class="right-side">
           <h2>Login to ReCheck Data</h2>
-          <div class="code">
+          <div class="login-code">
             <img src="./images/qrcode.png" alt="QR CODE" />
-            <button class="btn btn-primary">Generate Code</button>
+            <p>Scan with mobile to login.</p>
+            <button class="btn btn-primary">Generate QR Code</button>
           </div>
-        </div>
+        </section>
       </main>
+      <footer class="footer">
+        <span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </span>
+        <p>
+          &copy; 2016
+          <script>
+            new Date().getFullYear() > 2016 &&
+              document.write(' - ' + new Date().getFullYear())
+          </script>
+          ReCheck B.V. All rights reserved.
+        </p>
+      </footer>
     </div>
   </div>
 

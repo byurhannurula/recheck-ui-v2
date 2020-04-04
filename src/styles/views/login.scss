@@ -1,46 +1,148 @@
+.login-header {
+  position: absolute;
+  top: $space-5;
+  left: $space-7;
+  z-index: 2;
+  border-bottom: 0;
+  background-color: transparent;
+
+  img {
+    height: 2.8rem;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-5 $space-8;
+
+  a {
+    color: $color-gray-400;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: $color-gray-100;
+      text-decoration: underline;
+    }
+
+    &:not(:last-child) {
+      padding-right: 18px;
+    }
+  }
+
+  p {
+    color: $color-dark;
+  }
+
+  @include respond-max($bp-md) {
+    width: 100%;
+    flex-direction: column;
+
+    span, a, p {
+      color: $color-dark;
+    }
+  }
+}
+
 .main.login {
   padding: 0;
   color: $color-white;
-  @include flex(center, space-between);
+  background-color: $color-light;
+  @include flex(center, space-between);  
 
   .left-side {
-    width: 60vw;
+    width: 55vw;
     height: 100%;
-    @include flex(center, center);
-    flex-direction: column;
+    text-align: center;
+    @include flex(center, center, column);
+
+    // background-color: $color-light;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
     background-image: url(../images/hero.jpg);
-    background-position: right center;
+    background-position: right -56px center;
     background-repeat: no-repeat;
     background-size: cover;
-    clip-path: polygon(0 0, 96% 0, 79% 100%, 0% 100%);
 
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 0px;
+      margin-top: 0;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 400;
+      max-width: 420px;
+    }
+
+    @include respond-max($bp-lg) {
+      h1 {
+        font-size: 28px;
+      }
+      h4 {
+        max-width: 320px;
+        font-size: 14px;
+      }
+    }
+
+    @include respond-max($bp-md) {
+      display: none;
+    }
   }
 
   .right-side {
-    width: 40vw;
+    width: 55vw;
     height: 100%;
     color: $color-dark;
     background-color: $color-light;
-    @include flex(center, center);
-    flex-direction: column;
+    @include flex(center, center, column);
+
+    @include respond-max($bp-md) {
+      width: 100%;
+    }
 
     h2 {
-      margin-right: 56px;
       margin-bottom: 32px;
     }
 
-    .code {
-      margin-right: 56px;
-      display: flex;
+    .login-code {
+      @include flex-align();
       flex-direction: column;
-      background-color: $color-light;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      background-color: $color-white;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
       border-radius: $rounded-sm;
       padding: 32px 56px;
 
+      img {
+        border-radius: $rounded-sm;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+        color: $color-gray-700;
+        margin-bottom: 0;
+      }
 
       button {
-        margin-top: 32px;
+        margin-top: 20px;
       }
     }
   }
