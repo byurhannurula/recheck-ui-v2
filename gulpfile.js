@@ -9,9 +9,9 @@ const { routes, tasks } = require('./config')
 const dev = $.environments.development
 const prod = $.environments.production
 
-const errorMessage = err => console.log(err.message)
+const errorMessage = (err) => console.log(err.message)
 
-gulp.task('views', done => {
+gulp.task('views', (done) => {
   gulp
     .src(`${routes.src.views}/*.html`)
     .pipe($.plumber({ errorHandler: errorMessage }))
@@ -33,7 +33,7 @@ gulp.task('views', done => {
   done()
 })
 
-gulp.task('styles', done => {
+gulp.task('styles', (done) => {
   gulp
     .src(`${routes.src.styles}/app.+(sass|scss)`)
     .pipe($.plumber({ errorHandler: errorMessage }))
@@ -48,7 +48,7 @@ gulp.task('styles', done => {
   done()
 })
 
-gulp.task('scripts', done => {
+gulp.task('scripts', (done) => {
   gulp
     .src(`${routes.src.scripts}/**/*.js`)
     .pipe($.plumber({ errorHandler: errorMessage }))
@@ -62,14 +62,13 @@ gulp.task('scripts', done => {
   done()
 })
 
-gulp.task('images', done => {
+gulp.task('images', (done) => {
   gulp
     .src(`${routes.src.img}/**/*.*`)
     .pipe($.plumber({ errorHandler: errorMessage }))
     .pipe(
       $.imagemin([
         $.imagemin.gifsicle({ interlaced: true }),
-        $.imagemin.jpegtran({ progressive: true }),
         $.imagemin.optipng({ optimizationLevel: 5 }),
         $.imagemin.svgo({
           plugins: [{ removeViewBox: true }]
@@ -82,7 +81,7 @@ gulp.task('images', done => {
   done()
 })
 
-gulp.task('server', done => {
+gulp.task('server', (done) => {
   browserSync.init({
     notify: false,
     open: false,
@@ -96,7 +95,7 @@ gulp.task('server', done => {
   done()
 })
 
-gulp.task('clean', done => {
+gulp.task('clean', (done) => {
   sync(routes.dist.views)
   done()
 })

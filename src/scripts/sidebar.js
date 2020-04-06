@@ -5,7 +5,7 @@ const sidebar = selectElement('.sidebar')
 const sidebarNav = selectElement('.sidebar .nav')
 const navItems = selectElements('nav.nav .nav--item')
 
-menuButton.addEventListener('click', e => {
+menuButton.addEventListener('click', (e) => {
   sidebar.classList.toggle('is-active')
 })
 
@@ -15,8 +15,8 @@ closeButton.addEventListener('click', () => {
     : ''
 })
 
-navItems.forEach(item => {
-  item.addEventListener('click', e => {
+navItems.forEach((item) => {
+  item.addEventListener('click', (e) => {
     e.stopPropagation()
     // e.preventDefault()
     const activeElement = sidebarNav.querySelector('.is-active')

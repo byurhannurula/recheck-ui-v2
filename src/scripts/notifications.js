@@ -4,14 +4,14 @@ const alertCloseButtons = selectElements('.alert > button')
 const alerts = selectElements('.alert')
 
 // to show our alerts
-alertOpenButtons.forEach(btn => {
-  btn.addEventListener('click', e => {
+alertOpenButtons.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
     alert.notify(e.target.dataset.type, `Lorem ipsum dolor sit amet..`)
   })
 })
 
 // to close our alerts
-alertCloseButtons.forEach(btn => {
+alertCloseButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     const active = activeAlert()
     closeAlert(active)
@@ -20,7 +20,7 @@ alertCloseButtons.forEach(btn => {
 
 function activeAlert() {
   let active = null
-  alerts.forEach(alert => {
+  alerts.forEach((alert) => {
     if (alert.classList.contains('is-active')) {
       active = alert
     }

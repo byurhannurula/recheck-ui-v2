@@ -4,8 +4,8 @@ const modalOpenButtons = selectElements('.modal-btn')
 const modalCloseButtons = selectElements('.modal .modal-header > button')
 
 // to show our modals
-modalOpenButtons.forEach(btn => {
-  btn.addEventListener('click', e => {
+modalOpenButtons.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
     if (e.target.dataset.type) {
       showModal(selectElement(`.modal.modal-${e.target.dataset.type}`))
     } else {
@@ -15,7 +15,7 @@ modalOpenButtons.forEach(btn => {
 })
 
 // to close our modals
-modalCloseButtons.forEach(btn => {
+modalCloseButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     const active = activeModal()
     closeModal(active)
@@ -24,7 +24,7 @@ modalCloseButtons.forEach(btn => {
 
 function activeModal() {
   let active = null
-  modals.forEach(modal => {
+  modals.forEach((modal) => {
     if (modal.classList.contains('is-active')) {
       active = modal
     }

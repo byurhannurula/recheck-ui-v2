@@ -1,4 +1,4 @@
-const alertTemplate = state => `
+const alertTemplate = (state) => `
   <div class="content">
     <svg class="icon icon-${state || 'info'}">
       <use xlink:href="#icon-${state || 'info'}"></use>

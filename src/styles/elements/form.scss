@@ -14,12 +14,12 @@
     width: 256px;
     font-size: 14px;
     padding: 9px 10px;
-    border-radius: $rounded-sm;
     color: $color-dark;
+    border-radius: $rounded-sm;
     border: 1px solid $color-gray-300;
     background-color: $color-white;
     transition: all 150ms ease-in-out;
-
+    
     &::placeholder {
       color: $color-gray-600;
     }

@@ -13,7 +13,7 @@ function copyToClipboard(valueToCopy) {
   document.body.removeChild(aux)
 }
 
-const getClosest = function(elem, selector, className = 'is-active') {
+const getClosest = function (elem, selector, className = 'is-active') {
   if (!event.target.closest(selector)) {
     elem.classList.contains(className) ? elem.classList.remove(className) : ''
   }
@@ -26,7 +26,7 @@ function shortenFileName(fileName, maxLength = 24) {
     let name = fileNameAndExtension.dataName
     let ext = fileNameAndExtension.dataExtension
 
-    // //29 - 2 for *. - extension length
+    // //24 - 2 for *. - extension length
     fileName = `${name.substring(0, maxLength - 2 - ext.length)}*.${ext}`
   }
 

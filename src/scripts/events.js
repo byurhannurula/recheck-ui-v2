@@ -7,13 +7,11 @@ const identityCopyButton = selectElement(
 window.addEventListener('DOMContentLoaded', eventListeners())
 
 function eventListeners() {
-  identityCopyButton.addEventListener('click', e => {
+  identityCopyButton.addEventListener('click', (e) => {
     copyToClipboard(e.target.value)
   })
 
   identityDdButton.addEventListener('click', () => {
-    identityDd.classList.contains('is-active')
-      ? identityDd.classList.remove('is-active')
-      : identityDd.classList.add('is-active')
+    identityDd.classList.toggle('is-active')
   })
 }
