@@ -3,7 +3,7 @@
   <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
     <div class="modal-header">
       <h4>Share Request</h4>
-      <button type="button" class="modal-close-btn" aria-label="close">
+      <button type="button" class="modal-close-btn" aria-label="modal-close">
         <svg class="icon icon-close">
           <use xlink:href="#icon-close"></use>
         </svg>
@@ -13,8 +13,36 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quia, dolorem qui magnam eaque numquam nobis blanditiis, autem culpa commodi incidunt nulla, maiores voluptate provident nam illo ipsa nihil repellat.</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" class="btn btn-default" aria-label="modal-close">Cancel</button>
       <button type="button" class="btn btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Basic modal -->
+<div class="modal modal-upload" data-animation="on">
+  <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
+    <div class="modal-header">
+      <h4>Data Upload</h4>
+      <button type="button" class="modal-close-btn" aria-label="modal-close">
+        <svg class="icon icon-close">
+          <use xlink:href="#icon-close"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div id="droparea" class="droparea">
+        <svg class="icon icon-cloud-upload">
+          <use xlink:href="#icon-cloud-upload"></use>
+        </svg>
+        <input type="file" class="file-upload" />
+        <p>Drag and Drop file here or click to browse</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-block" aria-label="modal-close">
+        Close
+      </button>
     </div>
   </div>
 </div>
@@ -40,20 +68,24 @@
   <div class="modal-content" role="dialog" aria-label="dialog" tabindex=“-1”>
     <div class="modal-header">
       <h4>Share Request</h4>
-      <button type="button" class="modal-close-btn" aria-label="close">
+      <button type="button" class="modal-close-btn" aria-label="modal-close">
         <svg class="icon icon-close">
           <use xlink:href="#icon-close"></use>
         </svg>
       </button>
     </div>
     <div class="modal-body">
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus numquam nihil.</p>
       <div class="form-group">
-        <input type="text" class="input block" placeholder="Input modal">
+        <label for="modalInput">User ID</label>
+        <input type="text" id="modalInput" class="input block" placeholder="Input modal">
+      </div>
+      <div class="form-group">
+        <label for="modalInput">User ID</label>
+        <input type="text" id="modalInput" class="input block" placeholder="Input modal">
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" class="btn btn-default" aria-label="modal-close">Cancel</button>
       <button type="button" class="btn btn-primary">Confirm</button>
     </div>
   </div>
@@ -70,7 +102,7 @@
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero necessitatibus.</p>
     </div>
     <div class="modal-footer">
-      <button type="button" aria-label="close-modal" class="btn btn-primary btn-block">
+      <button type="button" class="btn btn-primary btn-block" aria-label="modal-close">
         Close
       </button>
     </div>

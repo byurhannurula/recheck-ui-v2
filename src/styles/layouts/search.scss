@@ -64,18 +64,11 @@
     }
 
     button {
-      border-left: 1px solid $color-gray-300;
-      border-right: 1px solid $color-gray-300;
-      padding-top: 23px;
-      padding-bottom: 23px;
+      display: none;
     }
 
     @include respond-max($bp-sm) {
       .form-group {
-        display: none;
-      }
-
-      button {
         display: none;
       }
     }
@@ -135,11 +128,6 @@
           display: flex;
           padding-top: $space-1;
           padding-bottom: $space-1;
-          border: 1px solid $color-gray-300;
-          color: $color-light;
-          background-color: $color-primary;
-
-          @include buttonEffects($color-primary);
         }
       }
     }

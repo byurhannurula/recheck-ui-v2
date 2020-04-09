@@ -1,6 +1,34 @@
 const selectElement = (o) => document.querySelector(o)
 const selectElements = (o) => document.querySelectorAll(o)
 
+const searchBar = selectElement('.search-area')
+const searchInput = selectElement('#search-input')
+
+const identityDd = selectElement('.identity-dd-button')
+const identityDdButton = selectElement('.identity-dd-button > button.btn')
+const identityCopyButton = selectElement(
+  '.identity-dd-button .dropdown > button.dropdown-link'
+)
+
+function eventListeners() {
+  identityCopyButton.addEventListener('click', (e) => {
+    console.log(e)
+    copyToClipboard(e.target.value)
+  })
+
+  identityDdButton.addEventListener('click', () => {
+    identityDd.classList.toggle('is-active')
+  })
+
+  searchInput.addEventListener('click', (e) => {
+    searchBar ? searchBar.classList.add('mobile-search') : ''
+  })
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  eventListeners()
+})
+
 document.addEventListener(
   'click',
   function (event) {

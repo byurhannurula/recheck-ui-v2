@@ -6,7 +6,7 @@ const defaultQuery = {
   start: 0,
   length: 10,
   search: { value: '' },
-  order: [{ column: '4', dir: 'asc' }]
+  order: [{ column: '3', dir: 'desc' }]
 }
 let currentQuery = defaultQuery
 
@@ -26,6 +26,7 @@ async function initPagination(entriesPerPage) {
   // On change row count update table
   selectElement('#rowCounts').addEventListener('change', function () {
     maxRows = this.value
+    totalPages = Math.ceil(totalRows / maxRows)
     updateTable()
   })
 
@@ -52,6 +53,7 @@ async function initPagination(entriesPerPage) {
   })
 
   async function updateTable() {
+    handleButtons()
     // Update pagination info
     updatePaginationInfo()
 
@@ -74,7 +76,10 @@ async function initPagination(entriesPerPage) {
   }
 
   function handleButtons() {
-    if (currentPage <= 1) {
+    if (totalPages === 1) {
+      prevButton.disabled = true
+      nextButton.disabled = true
+    } else if (currentPage <= 1) {
       prevButton.disabled = true
       nextButton.disabled = false
     } else if (currentPage >= totalPages) {
@@ -94,7 +99,9 @@ function loadTable() {
   initPagination(10)
 
   // Sort elements
-  selectElements(`#table > thead th`).forEach((th) => {
+  selectElements(
+    `#table > thead th:nth-child(0), th:nth-child(2), th:nth-child(3)`
+  ).forEach((th) => {
     th.addEventListener('click', async (e) => {
       const el = e.target
       const currentData = el.dataset
@@ -103,7 +110,7 @@ function loadTable() {
         el.setAttribute('data-sortDir', 'desc')
         loadData(
           await setParams(
-            ['column', 'dir'],
+            ['orderColumn', 'orderDir'],
             [el.cellIndex.toString(), currentData.sortdir]
           )
         )
@@ -111,7 +118,7 @@ function loadTable() {
         el.setAttribute('data-sortDir', 'asc')
         loadData(
           await setParams(
-            ['column', 'dir'],
+            ['orderColumn', 'orderDir'],
             [el.cellIndex.toString(), currentData.sortdir]
           )
         )
@@ -119,7 +126,7 @@ function loadTable() {
         el.setAttribute('data-sortDir', 'asc')
         loadData(
           await setParams(
-            ['column', 'dir'],
+            ['orderColumn', 'orderDir'],
             [el.cellIndex.toString(), currentData.sortdir]
           )
         )
@@ -131,15 +138,15 @@ function loadTable() {
   selectElement('.search-form').addEventListener('keyup', async (e) => {
     const searchVal = e.target.value
     if (searchVal.length >= 3 || searchVal.length === 0) {
-      loadData(await setParams('search', searchVal))
+      loadData(
+        await setParams(
+          ['start', 'length', 'search'],
+          (currentPage - 1) * maxRows,
+          maxRows,
+          searchVal
+        )
+      )
     }
-  })
-
-  // Add event listener to copy data id
-  selectElements('#table tbody tr > td:nth-child(3)').forEach((td) => {
-    td.addEventListener('click', (e) =>
-      copyToClipboard(e.target.attributes[0].value)
-    )
   })
 }
 
@@ -149,9 +156,36 @@ function loadData({ data }) {
   tableBody.innerHTML = ''
 
   for (let row = 0; row < data.length; row++) {
-    const rowElement = dataTemplate(data[row])
+    const rowElement = dataTemplate(data[row], row)
     tableBody.innerHTML += rowElement
   }
+
+  // Add event listener to copy data id
+  selectElements('#table tbody tr > td:nth-child(3)').forEach((td) => {
+    td.addEventListener('click', (e) =>
+      copyToClipboard(e.target.attributes[0].value)
+    )
+  })
+
+  $('#selectAll').click(function () {
+    var checkAll = $('#selectAll').prop('checked')
+    if (checkAll) {
+      $('.row').prop('checked', true)
+    } else {
+      $('.row').prop('checked', false)
+    }
+  })
+
+  $('.row').click(function () {
+    if ($('.row').length === $('.row:checked').length) {
+      $('#selectAll').prop('indeterminate', false)
+      $('#selectAll').prop('checked', true)
+    } else if ($('.row:checked').length === 0) {
+      $('#selectAll').prop('indeterminate', false)
+    } else {
+      $('#selectAll').prop('indeterminate', true)
+    }
+  })
 }
 
 document.addEventListener('DOMContentLoaded', () => {

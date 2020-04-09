@@ -94,6 +94,18 @@ table,
         pointer-events: none;
       }
     }
+
+    // td {
+    //   width: 100%;
+    //   max-width: 230px;
+    //   white-space: nowrap;
+    //   overflow: hidden;
+
+
+    //   &:nth-child(3) {
+    //     text-overflow: ellipsis;
+    //   }
+    // }
   }
 }
 

@@ -1,3 +1,38 @@
+function smartTruncate(elem, baseWidth = 160, firstHalfLength = 10) {
+  if (elem.width() < baseWidth || elem.length < firstHalfLength) {
+    return elem
+  }
+
+  const firstHalf = elem.substring(0, firstHalfLength) + '...'
+  const secondHalfWidth = baseWidth - firstHalf.width()
+  let tempElem = elem.substring(firstHalfLength, elem.length - 1)
+
+  while (tempElem.width() > secondHalfWidth) {
+    tempElem = tempElem.substr(1)
+  }
+
+  return firstHalf + tempElem
+}
+
+String.prototype.width = function (font) {
+  var f = font || '14px Rubik',
+    o = $('<div></div>')
+      .text(this)
+      .css({
+        position: 'absolute',
+        float: 'left',
+        'white-space': 'nowrap',
+        visibility: 'hidden',
+        font: f
+      })
+      .appendTo($('body')),
+    w = o.width()
+
+  o.remove()
+
+  return w
+}
+
 function copyToClipboard(valueToCopy) {
   // Create a 'hidden' input
   var aux = document.createElement('input')

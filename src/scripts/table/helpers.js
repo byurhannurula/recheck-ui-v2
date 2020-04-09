@@ -64,7 +64,8 @@ async function getData() {
   }
 
   const queryParams = formatParams(currentQuery)
-  const authParams = `api=1&token=c1030e40-77cf-11ea-a768-5f2acbeed30b`
+  const authParams = `api=1&token=9ac5df10-7a76-11ea-a768-5f2acbeed30b`
+  // 5e0539e0-7a4e-11ea-b307-416a00bd38d3
   const queryUrl = `https://beta.recheck.io/data/created?${authParams}&${queryParams}`
 
   try {
@@ -79,42 +80,52 @@ async function getData() {
       console.log('🚨  ERROR while getting data from API!')
       return null
     }
-    // return data
   } catch (error) {
     console.log(error)
   }
 }
 
-const dataTemplate = (object) => {
-  const btnClass =
-    object.txStatus === 'complete'
-      ? 'primary'
-      : object.txStatus === 'error'
-      ? 'danger'
-      : 'default'
+function dataState(state) {
+  switch (state) {
+    case 'complete':
+      return ['report', 'primary', 'Completed']
+    case 'new':
+    case 'in_progress':
+    case 'broadcasted':
+    case 'retry':
+      return ['loading', 'default', 'In Progress']
+    case 'pre-new':
+    case 'error_chain':
+    case 'error_exceed':
+    case 'error_network':
+    case 'error':
+    case 'unknown':
+      return ['error', 'danger', 'Error']
+    default:
+      return ['error', 'danger', 'Error']
+  }
+}
 
-  const btnContent =
-    object.txStatus === 'complete'
-      ? 'Completed'
-      : object.txStatus === 'error'
-      ? 'Error'
-      : 'In Progress'
+const dataTemplate = (object, id) => {
+  const docState = dataState(object.txStatus)
+
   return `
     <tr>
-      <td><input type="checkbox" /></td>
+      <td>
+        <input type="checkbox" class="row" name="row" value="${id + 1}" />
+      </td>
       <td>${shortenFileName(`${object.dataName}${object.dataExtension}`)}</td>
       <td value=${object.dataId}>
-        ${object.dataId.replace(
-          object.dataId.substring(10, object.dataId.length - 10),
-          '...'
-        )}
+        ${smartTruncate(object.dataId)}
         <svg class="icon icon-clipboard">
           <use xlink:href="#icon-clipboard" />
-        </svg>
+        </svg>  
       </td>
       <td>${new Date(object.dateCreated).toLocaleString()}</td>
       <td>
-        <span class="badge badge-red">${object.category}</span>
+        <span class="badge ${object.category.toLowerCase()}">
+          ${object.category}
+        </span>
       </td>
       <td>
         ${
@@ -124,13 +135,15 @@ const dataTemplate = (object) => {
         }
       </td>
       <td>
-        <button type="button" class="btn btn-${btnClass} btn-icon btn-small">
-        ${
-          object.txStatus === 'complete'
-            ? `<svg class="icon icon-report"> <use xlink:href="#icon-report" /> </svg>`
-            : `<div class="icon loader loader-sm"></div>`
-        }
-          ${btnContent}
+        <button type="button" class="btn btn-${docState[1]} btn-icon btn-small">
+          ${
+            docState[0] === 'loading'
+              ? `<div class="icon loader loader-sm"></div>`
+              : `<svg class="icon icon-${docState[0]}">
+              <use xlink:href="#icon-${docState[0]}"></use>
+            </svg>`
+          }
+          ${docState[2]}
         </button>
       </td>
     </tr>

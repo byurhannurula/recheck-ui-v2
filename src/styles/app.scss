@@ -10,6 +10,7 @@
 @import './config/base.scss';
 
 // Specific element/component styles
+@import './elements/tooltip.scss';
 @import './elements/loader.scss';
 @import './elements/buttons.scss';
 @import './elements/badges.scss';

@@ -39,8 +39,9 @@
       max-width: 80px;
 
       @include respond-max(560px) {
+        align-self: flex-end;
         width: 100%;
-        max-width: 100%;
+        // max-width: 100%;
       }
     }
   }
