@@ -4,12 +4,12 @@ const modalOpenButtons = selectElements('.modal-btn')
 const allModalCloseButtons = selectElements('[aria-label="modal-close"]')
 
 // add listener to all modal for esc key
-modals.forEach((modal) => {
-  modal.addEventListener('keydown', () => {
-    const active = activeModal()
-    console.log(active)
-  })
-})
+// modals.forEach((modal) => {
+//   modal.addEventListener('keydown', () => {
+//     const active = activeModal()
+//     console.log(active)
+//   })
+// })
 
 // to show our modals
 modalOpenButtons.forEach((btn) => {
@@ -55,25 +55,21 @@ function closeModal(element) {
 const uploadModal = selectElement(`#droparea`)
 const uploadInput = selectElement('.modal-upload .file-upload')
 
-// window.addEventListener('dragenter', (e) => e.preventDefault(), false)
-// window.addEventListener('dragover', (e) => e.preventDefault(), false)
-uploadModal.addEventListener(
-  'drop',
-  (e) => {
-    // e.preventDefault()
-    console.log(e)
-    handleFileUpload(e)
-  },
-  false
-)
+window.addEventListener('dragenter', (e) => e.preventDefault(), false)
+window.addEventListener('dragover', (e) => e.preventDefault(), false)
+uploadModal.addEventListener('drop', (e) => {
+  e.preventDefault()
+  handleFileUpload(e)
+}, false)
 
-// uploadModal.addEventListener('click', () => uploadInput.click(), false)
+uploadModal.addEventListener('click', () => uploadInput.click(), false)
 
 uploadInput.addEventListener('click', (e) => {
   handleFileUpload(e)
 })
 
 function handleFileUpload(e) {
+  console.log(e)
   const file =
     e.type === 'click'
       ? e.target.files[0]
@@ -81,7 +77,7 @@ function handleFileUpload(e) {
       ? e.dataTransfer.files[0]
       : ''
 
-  if (!file) return
+  // if (!file) return
 
   console.log(file)
 }

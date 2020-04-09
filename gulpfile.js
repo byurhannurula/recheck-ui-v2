@@ -54,7 +54,7 @@ gulp.task('scripts', (done) => {
     .pipe($.plumber({ errorHandler: errorMessage }))
     .pipe(dev($.sourcemaps.init()))
     // .pipe($.uglify())
-    .pipe($.concat('app.js'))
+    // .pipe($.concat('app.js'))
     .pipe(dev($.sourcemaps.write('.')))
     .pipe(gulp.dest(routes.dist.scripts))
     .pipe(browserSync.reload({ stream: true }))

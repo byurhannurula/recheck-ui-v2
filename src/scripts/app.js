@@ -4,17 +4,12 @@ const selectElements = (o) => document.querySelectorAll(o)
 const searchBar = selectElement('.search-area')
 const searchInput = selectElement('#search-input')
 
-const identityDd = selectElement('.identity-dd-button')
-const identityDdButton = selectElement('.identity-dd-button > button.btn')
-const identityCopyButton = selectElement(
-  '.identity-dd-button .dropdown > button.dropdown-link'
-)
+const identityDd = selectElement('.profile-button')
+const identityDdButton = selectElement('.profile-button > button.btn')
+const identityButton = selectElement('.profile-button .dropdown-link')
 
 function eventListeners() {
-  identityCopyButton.addEventListener('click', (e) => {
-    console.log(e)
-    copyToClipboard(e.target.value)
-  })
+  identityButton.addEventListener('click', (e) => copyToClipboard(e.target.value))
 
   identityDdButton.addEventListener('click', () => {
     identityDd.classList.toggle('is-active')
@@ -33,7 +28,7 @@ document.addEventListener(
   'click',
   function (event) {
     getClosest(sidebar, '.menu-button')
-    getClosest(identityDd, '.identity-dd-button')
+    getClosest(identityDd, '.profile-button')
     getClosest(searchBar, '.search-form', 'mobile-search')
   },
   false
