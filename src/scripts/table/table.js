@@ -14,14 +14,19 @@ const prevButton = selectElement('.pagination #prev-btn')
 const nextButton = selectElement('.pagination #next-btn')
 const paginationInfo = selectElements('.pagination p span')
 
+let maxRows = 0
+let currentPage = 0
+let totalRows = 0
+let totalPages = 0
+
 async function initPagination(entriesPerPage) {
   // Fill tablle with default settings
   loadData(await setParams('length', entriesPerPage))
 
-  let maxRows = entriesPerPage
-  let currentPage = 1
-  let totalRows = recordsTotal
-  let totalPages = Math.ceil(totalRows / maxRows)
+  maxRows = entriesPerPage
+  currentPage = 1
+  totalRows = recordsTotal
+  totalPages = Math.ceil(totalRows / maxRows)
 
   // On change row count update table
   selectElement('#rowCounts').addEventListener('change', function () {
@@ -141,9 +146,7 @@ function loadTable() {
       loadData(
         await setParams(
           ['start', 'length', 'search'],
-          (currentPage - 1) * maxRows,
-          maxRows,
-          searchVal
+          [(currentPage - 1) * maxRows, maxRows, searchVal]
         )
       )
     }
@@ -151,7 +154,8 @@ function loadTable() {
 }
 
 // Fill table body
-function loadData({ data }) {
+function loadData(rows) {
+  const data = rows.data
   const tableBody = selectElement(`#table > tbody`)
   tableBody.innerHTML = ''
 

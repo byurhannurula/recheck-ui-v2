@@ -9,7 +9,9 @@ const identityDdButton = selectElement('.profile-button > button.btn')
 const identityButton = selectElement('.profile-button .dropdown-link')
 
 function eventListeners() {
-  identityButton.addEventListener('click', (e) => copyToClipboard(e.target.value))
+  identityButton.addEventListener('click', (e) =>
+    copyToClipboard(e.target.value)
+  )
 
   identityDdButton.addEventListener('click', () => {
     identityDd.classList.toggle('is-active')

@@ -1,12 +1,14 @@
 const alertOpenButtons = selectElements('.alert-btn')
-const alertCloseButtons = selectElements('.alert > button')
+const alertCloseButtons = selectElements('.alert [aria-label="alert-close"]')
 
 const alerts = selectElements('.alert')
 
 // to show our alerts
 alertOpenButtons.forEach((btn) => {
   btn.addEventListener('click', (e) => {
-    alert.notify(e.target.dataset.type, `Lorem ipsum dolor sit amet..`)
+    // alert.notify(e.target.dataset.type, `Lorem ipsum dolor sit amet..`)
+    const currentAlert = selectElement(`.alert.alert-${e.target.dataset.type}`)
+    showAlert(currentAlert)
   })
 })
 
@@ -30,15 +32,12 @@ function activeAlert() {
 
 function showAlert(element) {
   element.classList.toggle('is-active')
-  startTimer(element, 2500)
+
+  setTimeout(() => closeAlert(element), 2500)
 }
 
 function closeAlert(element) {
   element.classList.contains('is-active')
     ? element.classList.remove('is-active')
     : ''
-}
-
-function startTimer(elem, time) {
-  setTimeout(() => closeAlert(elem), time)
 }

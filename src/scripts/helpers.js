@@ -82,3 +82,18 @@ function getFileNameAndExtension(fileName) {
     dataExtension: extension
   }
 }
+
+async function readFileAsync(file) {
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader()
+
+    reader.onload = () => {
+      let base64 = btoa(reader.result)
+      resolve(base64)
+    }
+
+    reader.onerror = reject
+
+    reader.readAsBinaryString(file)
+  })
+}

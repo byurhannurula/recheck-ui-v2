@@ -3,14 +3,6 @@ const modals = selectElements('.modal')
 const modalOpenButtons = selectElements('.modal-btn')
 const allModalCloseButtons = selectElements('[aria-label="modal-close"]')
 
-// add listener to all modal for esc key
-// modals.forEach((modal) => {
-//   modal.addEventListener('keydown', () => {
-//     const active = activeModal()
-//     console.log(active)
-//   })
-// })
-
 // to show our modals
 modalOpenButtons.forEach((btn) => {
   btn.addEventListener('click', (e) => {
@@ -50,34 +42,61 @@ function closeModal(element) {
     : ''
 }
 
+// add listener to all modal for esc key
+document.addEventListener('keydown', (e) => {
+  const active = activeModal()
+  if (active) {
+    if (e.keyCode === 27) {
+      closeModal(active)
+    }
+  }
+})
+
 // ==========================================================================
 
-const uploadModal = selectElement(`#droparea`)
-const uploadInput = selectElement('.modal-upload .file-upload')
+const modalDroparea = selectElement('#droparea')
+const dropareaInput = selectElement('.modal-upload .file-upload')
+const modalBody = selectElement('.modal-upload .modal-body')
 
-window.addEventListener('dragenter', (e) => e.preventDefault(), false)
-window.addEventListener('dragover', (e) => e.preventDefault(), false)
-uploadModal.addEventListener('drop', (e) => {
+document.addEventListener('dragover', (e) => e.preventDefault())
+modalDroparea.addEventListener('drop', (e) => {
   e.preventDefault()
-  handleFileUpload(e)
-}, false)
-
-uploadModal.addEventListener('click', () => uploadInput.click(), false)
-
-uploadInput.addEventListener('click', (e) => {
   handleFileUpload(e)
 })
 
-function handleFileUpload(e) {
-  console.log(e)
+modalDroparea.addEventListener('click', () => dropareaInput.click())
+dropareaInput.addEventListener('change', (e) => handleFileUpload(e))
+
+async function handleFileUpload(e) {
   const file =
-    e.type === 'click'
-      ? e.target.files[0]
-      : e.type === 'drop'
+    e.type === 'drop'
       ? e.dataTransfer.files[0]
+      : e.type === 'change'
+      ? e.target.files[0]
       : ''
 
-  // if (!file) return
+  if (!file) return
 
-  console.log(file)
+  if (file.length > 1) {
+    console.log('Please drop only one file.')
+    return
+  }
+
+  let fileSize = file.size
+  console.log('File size: ', fileSize)
+
+  let fileNameExtension = getFileNameAndExtension(file.name)
+  console.log('Filename:', fileNameExtension)
+
+  const payload = await readFileAsync(file)
+
+  let fileObj = {
+    dataName: fileNameExtension.dataName,
+    dataExtension: fileNameExtension.dataExtension,
+    payload: payload,
+    category: '',
+    keywords: ''
+  }
+
+  console.log(fileObj)
 }
