@@ -64,7 +64,7 @@ async function getData() {
   }
 
   const queryParams = formatParams(currentQuery)
-  const authParams = `api=1&token=16a6e860-84ac-11ea-ae7b-c30df5241e1d`
+  const authParams = `api=1&token=1041fdf0-8ab7-11ea-a9ae-094bc36543bc`
   // 5e0539e0-7a4e-11ea-b307-416a00bd38d3
   const queryUrl = `https://beta.recheck.io/data/created?${authParams}&${queryParams}`
 
